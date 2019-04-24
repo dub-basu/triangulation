@@ -1,4 +1,6 @@
 #include "DCEL.h"
+#include "LSISegment.h"
+#include "primitives.h"
 
 void DCEL::addEdge(Point, Point) {
 
@@ -79,7 +81,10 @@ void DCEL::addEdge(Vertex* start, Vertex* end) {
 
 
     HalfEdge *startEdge = new HalfEdge(start);
+    //startEdge->end = end;
+
     HalfEdge *endEdge = new HalfEdge(end);
+    //endEdge->end = start;
 
     // Face *oldFace = start->incidentEdge->incidentFace;
     Face *newFace = new Face();
@@ -196,6 +201,15 @@ DCEL::DCEL(Polygon poly) {
     startEdgeReverse->next = lastEdgeReverse;
     lastEdgeReverse->previous = startEdgeReverse;
 
+//    Vertex* it = start;
+//    do {
+//        Vertex* next = it->incidentEdge->next->origin;
+//
+//        it->incidentEdge->next = next;
+//
+//        it = next;
+//    } while (it != start);
+
     this->faces.push_back(inner);
     //this->faces.push_back(outer);
 }
@@ -226,4 +240,33 @@ HalfEdge::HalfEdge(Vertex *start) {
     this->next = NULL;
     this->previous = NULL;
     this->twin = NULL;
+    this->helper = NULL;
 }
+
+bool HalfEdge::operator<(const HalfEdge &rt) {
+    // Making thisSeg
+    Point thisStart = Point(this->origin->x, this->origin->y);
+    Point thisEnd = Point(this->next->origin->x, this->next->origin->y);
+
+    LineSegment thisSeg(thisStart, thisEnd);
+    LSISegment thisLSISeg(thisSeg);
+
+    //Making other seg
+    Point rtStart = Point(rt.origin->x, rt.origin->y);
+    Point rtEnd = Point(rt.next->origin->x, rt.next->origin->y);
+    LineSegment rtSeg(rtStart, rtEnd);
+    LSISegment rtLSISeg(rtSeg);
+
+    LSISegment::lastReference = HalfEdge::lastReference;
+    return thisLSISeg < rtLSISeg;
+
+}
+
+std::ostream& operator<<(std::ostream& os, const HalfEdge& halfEdge){
+    os  << "HalfEdge starting at " << *halfEdge.origin << " to "
+        << *halfEdge.next->origin << "\n";
+    return os;
+}
+
+
+Vertex HalfEdge::lastReference = Vertex(NAN_POINT);

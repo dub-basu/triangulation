@@ -2,6 +2,8 @@
 #include <iomanip>
 #include <cmath>
 
+#define abs fabsl
+
 #define PERROR 0.000001
 
 
@@ -70,7 +72,7 @@ bool LineSegment::contains_point(Point& pt) const{
         return false;
     }
     else {
-        if( abs(start_point.x - end_point.x) <ERROR)
+        if( abs(start_point.x - end_point.x) < PERROR)
             return(pt.y <= end_point.y && pt.y >= start_point.y);
         else{
             coordinate t = (pt.x - start_point.x) / (end_point.x - start_point.x);
@@ -143,6 +145,7 @@ Point LineSegment::end_pt() const {
 }
 
 Point LineSegment::horizontal_projection(Point pt) const{
+    //std::cout << "HP : " << *this << pt;
     if( abs(end_point.y - start_point.y)<ERROR ){
         // std::cout << "SHOULD NOT PRINT";
         return NAN_POINT;
@@ -152,6 +155,7 @@ Point LineSegment::horizontal_projection(Point pt) const{
         x_coord *= (end_point.x - start_point.x);
         x_coord += start_point.x;
         Point retPt = Point(x_coord, pt.y);
+
         return this->contains_point(retPt) ? retPt : NAN_POINT ;
     }
 }

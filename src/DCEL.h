@@ -14,16 +14,26 @@ using namespace std;
 
 class HalfEdge{
 public:
+
+    static Vertex lastReference;
+
     Vertex* origin;
+    //Vertex* end;
     HalfEdge* twin;
     Face* incidentFace;
     HalfEdge* next;
     HalfEdge* previous;
 
+    Vertex* helper;
+
     HalfEdge(Vertex*);
 
+    bool operator< (const HalfEdge& );
+
+    friend std::ostream& operator<<(std::ostream& os, const HalfEdge& halfEdge);
 
 };
+// Vertex HalfEdge::lastReference = Vertex(NAN_POINT);
 
 class Vertex : public Point {
     // x & y coordinate
