@@ -48,6 +48,11 @@ bool Point::operator< (const Point& right) const{
 //        return p1.y < p2.y;
 //}
 
+len Point::euclidean_distance(Point pt){
+    len dist = pow((this->x - pt.x),2) + pow((this->y - pt.y),2);
+    dist = sqrt(dist);
+    return dist;
+}
 
 bool Point::is_nan(){
     return(std::isnan(x) || std::isnan(y));
@@ -160,3 +165,46 @@ std::ostream& operator<<(std::ostream& os, const LineSegment& l){
 bool LineSegment::is_nan(){
     return(start_point.is_nan() || end_point.is_nan());
 }
+
+
+PolarPoint::PolarPoint(){
+    this -> p_angle = NAN_ANGLE;
+    this -> p_distance = NAN_LEN;
+}
+
+PolarPoint::PolarPoint(Point pt, Point origin){
+    x = pt.x;
+    y = pt.y;
+    p_distance = pt.euclidean_distance(origin);
+    if (p_distance == 0)
+        p_angle = NAN_ANGLE;
+    else{
+        p_angle = acos( (pt.x - origin.x) / p_distance );
+        if(pt.y < origin.y) p_angle = 2*PI - p_angle;
+    }
+}
+
+len PolarPoint::get_p_distance() const{ return(this -> p_distance); }
+
+angle PolarPoint::get_p_angle() const{ return(this -> p_angle); }
+
+angle PolarPoint::get_p_angle_degrees() const {return((this -> p_angle) * (180 / PI));}
+
+bool PolarPoint::operator< (const PolarPoint& right) const{
+
+    if(std::isnan(right.get_p_angle())) return true;
+    else if(std::isnan(this -> p_angle)) return false;
+
+    if(this->get_p_angle() < right.get_p_angle())
+        return true;
+    else if( this->get_p_angle() > right.get_p_angle())
+        return false;
+    else
+        return this->get_p_distance() >= right.get_p_distance();
+}
+
+void PolarPoint::set_p_angle(angle new_angle){
+    this -> p_angle = new_angle;
+}
+
+

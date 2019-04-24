@@ -10,20 +10,14 @@ typedef long double len;
 typedef long double angle;
 
 
-/**
- * NAN_POINT is null equivalent of a point
- *
- * Returned in case two lines are parallel,
- * and we try to compute intersection point
- */
 #define NAN_POINT Point(std::numeric_limits<coordinate>::quiet_NaN(), \
                         std::numeric_limits<coordinate>::quiet_NaN())
-#define abs fabsl
-
-/**
- * NAN_LINE is a LineSegment with endpoints as NAN_POINTs
- */
 #define NAN_LINE LineSegment(NAN_POINT, NAN_POINT)
+#define NAN_ANGLE std::numeric_limits<angle>::quiet_NaN()
+#define NAN_LEN std::numeric_limits<len>::quiet_NaN()
+#define PI 3.14159265358979323846
+
+#define abs fabsl
 
 #define ERROR 1e-8
 /**
@@ -95,6 +89,9 @@ public:
      * @return true if point is a NAN_POINT
      */
     bool is_nan();
+
+
+    len euclidean_distance(Point pt);
 
 //        bool map<Point> operator<(const Point, const Point);
 };

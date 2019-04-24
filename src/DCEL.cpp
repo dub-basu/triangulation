@@ -206,6 +206,20 @@ Vertex::Vertex(Point p) {
     this->incidentEdge = NULL;
 }
 
+bool Vertex::operator<(const Vertex & rt) {
+    //return false;
+    if (this->y > rt.y){
+        return true;
+    }
+
+    if (fabsl(this->y - rt.y) < 0.0001){
+        return this->x < rt.x;
+    }
+
+    return false;
+
+}
+
 HalfEdge::HalfEdge(Vertex *start) {
     this->origin = start;
     this->incidentFace = NULL;

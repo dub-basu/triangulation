@@ -30,6 +30,7 @@ class Vertex : public Point {
 public:
     HalfEdge* incidentEdge;
     Vertex(Point);
+    bool operator< (const Vertex&);
 };
 
 class Face {
