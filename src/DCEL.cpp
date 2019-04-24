@@ -135,6 +135,11 @@ void DCEL::addEdge(Vertex* start, Vertex* end) {
 
 }
 
+DCEL::DCEL() {
+    // Does nothing.
+}
+
+
 DCEL::DCEL(Polygon poly) {
     int numPts = poly.pointList.size();
 

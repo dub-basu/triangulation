@@ -47,6 +47,7 @@ public:
 
     vector<Vertex*> points;
 
+    DCEL();
     DCEL(Polygon);
 
     void addEdge(Point, Point);
