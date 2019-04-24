@@ -35,12 +35,14 @@ public:
 };
 // Vertex HalfEdge::lastReference = Vertex(NAN_POINT);
 
+enum class vertexType { REGULAR, SPLIT, MERGE, START, END };
 class Vertex : public Point {
     // x & y coordinate
 public:
     HalfEdge* incidentEdge;
     Vertex(Point);
     bool operator< (const Vertex&);
+    vertexType type;
 };
 
 class Face {

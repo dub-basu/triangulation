@@ -144,6 +144,45 @@ DCEL::DCEL() {
     // Does nothing.
 }
 
+/**
+ * Is point a below point p in priority?
+ * @param a - Point in question
+ * @param p - Reference point
+ * @return - True or false.
+ */
+bool isBelow(Point a,Point p)
+{
+    return (a.y<p.y || ( fabsl(a.y - p.y)<=1e-6 && a.x > p.x));
+}
+vertexType getType(Point a,Point b,Point c) {
+    long double x1, x2, y1, y2;
+    x1 = b.x - a.x;
+    y1 = b.y - a.y;
+
+    x2 = c.x - b.x;
+    y2 = c.y - b.y;
+
+    long double cross = x1 * y2 - y1 * x2;
+
+    bool c1=isBelow(b,a);
+    bool c2=isBelow(b,c);
+
+    if(c1 and c2)
+    {
+        if (cross > 0.0)
+            return vertexType::END;
+        else
+            return vertexType::MERGE;
+    }
+    else if(!c1 and !c2)
+    {
+        if (cross > 0.0)
+            return vertexType::START;
+        else
+            return vertexType::SPLIT;
+    }
+    return vertexType::REGULAR;
+}
 
 DCEL::DCEL(Polygon poly) {
     int numPts = poly.pointList.size();
@@ -166,9 +205,11 @@ DCEL::DCEL(Polygon poly) {
 
     inner->startEdge = startEdge;
     outer->startEdge = startEdgeReverse;
+    start->type=getType(poly.pointList[numPts-1],poly.pointList[0],poly.pointList[1]);
 
     for(int vIndex = 1; vIndex < numPts; vIndex++){
         Vertex *newVertex = new Vertex(poly.pointList[vIndex]);
+        newVertex->type=getType(poly.pointList[(numPts+vIndex-1)%numPts],poly.pointList[vIndex],poly.pointList[(vIndex+1)%numPts]);
         this->points.push_back(newVertex);
 
         HalfEdge *newEdge = new HalfEdge(newVertex);
