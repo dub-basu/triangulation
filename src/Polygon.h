@@ -10,7 +10,7 @@ public:
     vector <Point> pointList;
 
     Polygon ();
-    Polygon (vector<Point>& );
+    Polygon (vector<Point>& , bool f= false);
     bool pointInside(Point mid);
     bool LineInside(Point p1, Point p2);
 

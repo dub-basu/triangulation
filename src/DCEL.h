@@ -27,6 +27,7 @@ public:
     Vertex* helper;
 
     HalfEdge(Vertex*);
+    HalfEdge();
 
     bool operator< (const HalfEdge& );
     bool operator<= (const HalfEdge& );

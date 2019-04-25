@@ -30,6 +30,7 @@ class Triangulator
         vertexType temp=v->incidentEdge->twin->next->twin->helper->type;
         if(temp==vertexType::MERGE)
         {
+            //TODO Add Edge
             tri.addEdge(v,v->incidentEdge->twin->next->twin->helper);
         }
         st.remove(*v->incidentEdge->twin->next->twin);
@@ -38,6 +39,7 @@ class Triangulator
     void handleSplit(Vertex *v)
     {
         HalfEdge *i=st.searchL(*v->incidentEdge);
+        //TODO Add Edge
         tri.addEdge(v,i->helper);
         i->helper=v;
         st.insert(*v->incidentEdge);
@@ -47,9 +49,13 @@ class Triangulator
     void handleMerge(Vertex *v)
     {
         vertexType temp=v->incidentEdge->twin->next->twin->helper->type;
+        cout<<"V="<<*v<<endl;
+        cout<<"Temp="<<(*v->incidentEdge->twin->next->twin->helper)<<endl;
         if(temp==vertexType::MERGE)
         {
+            //TODO Add Edge
             tri.addEdge(v,v->incidentEdge->twin->next->twin->helper);
+            cout<<"Added edge b/w "<<(*v)<<" "<<(*v->incidentEdge->twin->next->twin->helper)<<endl;
         }
         //cout<<"Removing from status rn "<<(*v->incidentEdge->twin->next->twin)<<endl;
         //st.inorder();
@@ -59,6 +65,7 @@ class Triangulator
         HalfEdge *i=st.searchL(*v->incidentEdge);
         if(i->helper->type == vertexType::MERGE)
         {
+            //TODO Add Edge
             tri.addEdge(v,i->helper);
         }
         i->helper=v;
@@ -87,6 +94,7 @@ class Triangulator
         {
             if(i->helper->type==vertexType::MERGE)
             {
+                //TODO Add Edge
                 tri.addEdge(v,i->helper);
             }
             st.remove(*i);
@@ -98,6 +106,7 @@ class Triangulator
             HalfEdge *i = (st.searchL(*v->incidentEdge));
             if(i->helper->type==vertexType::MERGE)
             {
+                //TODO Add Edge
                 tri.addEdge(v,i->helper);
             }
             i->helper=v;
@@ -154,14 +163,15 @@ class Triangulator
     void triangulateMonotonePolygon(Face *f)
     {
         vector <Vertex *> s;
-        EventQueue<Vertex *> l;
+        EventQueue<Vertex*> l;
         //cout<<P.pointList.size()<<" is size when in func"<<endl;
 
         DCEL tri2=tri;
         /**Experimental**/
         HalfEdge *e=f->startEdge;
         l.insert(e->origin);
-        HalfEdge *temp=e;
+        //cout<<"Inserted "<<(*e->origin)<<" ";
+        HalfEdge *temp=f->startEdge;
         e=e->next;
         int n=1;
         Point maxP=Point(-1e9,-1e9),minP=Point(1e9,1e9);
@@ -169,9 +179,10 @@ class Triangulator
         while(e!=temp)
         {
             l.insert(e->origin);
+            //cout<<"Inserted "<<(*e->origin)<<" ";
             e=e->next;
             ++n;
-            if(Point(e->origin->x,e->origin->y).y<minP.y or (fabsl(e->origin->y-minP.y<=1e-6 and e->origin->x<minP.x)))
+            if(Point(e->origin->x,e->origin->y).y<minP.y or (fabsl(e->origin->y-minP.y<=1e-6 and e->origin->x>minP.x)))
             {
                 minP=*e->origin;
                 minE=e;
@@ -182,8 +193,9 @@ class Triangulator
                 maxE=e;
             }
         }
+        cout<<"N="<<n<<" l.size()="<<l.size()<<endl;
 
-        //cout<<maxP<<" "<<minP<<endl;
+        cout<<maxP<<" "<<minP<<endl;
 
         vector<Vertex *>lChain,rChain;
 
@@ -221,29 +233,32 @@ class Triangulator
         s.push_back(u1);
         s.push_back(u2);
         prevu=u2;
-        for(int j=0;j<n-1;j++)
+        for(int j=2;j<n-1;j++)
         {
-            cout<<"j="<<j<<endl;
+//            cout<<"j="<<j<<endl;
             uj=l.extractMin();
+            cout<<l.size()<<endl;
             cout<<"Uj="<<*uj<<" Top="<<*s.back()<<" Same chain? "<<checkSameChain(uj,s.back(),lChain,rChain)<<endl;
             if(!checkSameChain(uj,s.back(),lChain,rChain))
             {
                 while(!s.empty())
                 {
-                    if(s.size()>1 and uj!=s.back())
+                    if(s.size()>1 and *uj!=*s.back())
                     {
                         cout<<*uj;
                         cout<<" S.back()=";
                         cout<<*s.back()<<endl;
                         cout<<"NOT Same Chain, "<<*uj<<" "<<*s.back()<<" s.size()="<<s.size()<<endl;
 
-                        if(uj->incidentEdge->next->origin!= s.back() and uj->incidentEdge->twin->next->twin->origin !=s.back())
+                        if(*uj->incidentEdge->next->origin!= *s.back() and *uj->incidentEdge->twin->next->twin->origin !=*s.back())
                         {
-                            tri.addEdge(uj,s.back());
                             cout<<"Actually Added!!"<<endl;
+                            //TODO Add Edge
+                            tri.addEdge(uj,s.back());
+
                         }
 
-                        //cout<<"Added"<<endl;
+//                        cout<<"Added"<<endl;
                     }
                     s.pop_back();
                 }
@@ -276,17 +291,19 @@ class Triangulator
                         Polygon P=Polygon(points);
                         isInsideFace |=P.pointInside(mid);
                         LineIsInside&=P.LineInside(Point(uj->x,uj->y),Point(s.back()->x,s.back()->y));
-                        //cout<<P.pointInside(mid)<<"&&"<<P.LineInside(Point(uj->x,uj->y),Point(s.back()->x,s.back()->y))<<" ";
+                        cout<<"Point Is in? "<<P.pointInside(mid)<<"&& LineIsIN? "<<P.LineInside(Point(uj->x,uj->y),Point(s.back()->x,s.back()->y))<<" ";
                     }
                     diagonalInside = isInsideFace && LineIsInside ;
-                    cout<<"SS, added edge b/w "<<*uj<<" and "<<*s.back()<<" is in? "<<diagonalInside<<" s.size()="<<s.size()<<endl;
+                    //cout<<"SS, added edge b/w "<<*uj<<" and "<<*s.back()<<" is in? "<<diagonalInside<<" s.size()="<<s.size()<<endl;
                     if(!diagonalInside)break;
                     lastPopped=s.back();
 
-                    if(uj->incidentEdge->next->origin!= s.back() and uj->incidentEdge->twin->next->twin->origin !=s.back())
+                    if(*uj->incidentEdge->next->origin!= *s.back() and *uj->incidentEdge->twin->next->twin->origin !=*s.back())
                     {
-                        tri.addEdge(uj,s.back());
                         cout<<"Actually Added!!"<<endl;
+                        //TODO Add Edge
+                        tri.addEdge(uj,s.back());
+
                     }
 
                     s.pop_back();
@@ -299,14 +316,19 @@ class Triangulator
             prevu=uj;
             //tri.printDCEL();
         }
-
+        assert(l.size()==1);
         Vertex *un=l.extractMin();
         s.pop_back();
+        cout<<"s.size()="<<s.size()<<endl;
         while(s.size()>1)
         {
+            cout<<"Adding edge b/w "<<(*un)<<" "<<(*s.back())<<endl;
+            //TODO Add Edge
             tri.addEdge(un,s.back());
             s.pop_back();
         }
+        s.pop_back();
+        assert(l.size()==0);
 
         //tri.printDCEL();
 
@@ -316,6 +338,7 @@ class Triangulator
 public:
     Triangulator (Polygon a)
     {
+
         P=Polygon(a.pointList);
         //cout<<P.pointList.size()<<" is size of pointlist!!"<<endl;
         //for(auto i:P.pointList)cout<<i<<" ";cout<<endl;
@@ -381,18 +404,18 @@ public:
             else
                 assert(false);
         }
+        cout << "Y monotone done :" << tri.faces.size() << " monotones present\n" ;
         tri.printDCEL();
+
         vector <Face*> facesToIterate= tri.faces;
         for(int i=0;i<facesToIterate.size();i++)
         {
-            //cout<<"i="<<i<<endl;
+            cout<<"Triangulating face "<<i<<endl;
+
             triangulateMonotonePolygon(tri.faces[i]);
         }
 
         tri.printDCEL();
-
-
-
 
     }
 

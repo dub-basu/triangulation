@@ -8,32 +8,35 @@ Polygon::Polygon() {
     // Does nothing
 }
 
-Polygon::Polygon(vector<Point> &points) {
+Polygon::Polygon(vector<Point> &points, bool sortPoints) {
     // To Fill in points in counter clockwise order
 
+    if(sortPoints) {
+        vector<PolarPoint> polarPts;
 
+        coordinate x = 0, y = 0;
+        for (auto p : points) {
+            //    polarPts.push_back(PolarPoint(p));
+            x += p.x;
+            y += p.y;
+        }
+        x /= points.size();
+        y /= points.size();
 
-    vector<PolarPoint> polarPts;
+        Point ref = Point(x, y);
 
-    coordinate x= 0, y= 0;
-    for (auto p : points){
-        //    polarPts.push_back(PolarPoint(p));
-        x += p.x;
-        y += p.y;
+        for (auto p : points) {
+            polarPts.push_back(PolarPoint(p, ref));
+        }
+
+        sort(polarPts.begin(), polarPts.end());
+
+        for (auto pp : polarPts) {
+            pointList.push_back(Point(pp.x, pp.y));
+        }
     }
-    x /= points.size();
-    y /= points.size();
-
-    Point ref = Point(x,y);
-
-    for (auto p : points){
-        polarPts.push_back(PolarPoint(p,ref));
-    }
-
-    sort(polarPts.begin(),polarPts.end());
-
-    for (auto pp : polarPts){
-        pointList.push_back( Point(pp.x,pp.y) );
+    else{
+        pointList = points;
     }
 
     // this->pointList = points;

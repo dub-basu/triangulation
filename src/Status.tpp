@@ -19,11 +19,15 @@ private:
         Node* parent;
         T rightmost;
         int height;
+        Node ()
+        {
+
+        }
     } Node;
     Node *root= nullptr;
 
     Node* newNode(T key){
-        Node* node = (Node *)malloc(sizeof(Node));
+        Node* node = new Node() ;
         node->left = node->right = NULL;
         node->height = 1;//!< Added at leaf initially.
         node->key = key;

@@ -298,6 +298,11 @@ HalfEdge::HalfEdge(Vertex *start) {
     this->helper = start;
 }
 
+HalfEdge:: HalfEdge()
+{
+
+}
+
 bool HalfEdge::operator<(const HalfEdge &rt) {
     // Making thisSeg
     Point thisStart = Point(this->origin->x, this->origin->y);
