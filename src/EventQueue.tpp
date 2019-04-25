@@ -20,9 +20,9 @@ class EventQueue
         int right = 2 * i + 2;
         int smallest = i;
         int heapSize = events.size();
-        if (left < heapSize and events[left] < events[smallest])
+        if (left < heapSize and *events[left] < *events[smallest])
             smallest = left;
-        if (right < heapSize and events[right] < events[smallest])
+        if (right < heapSize and *events[right] < *events[smallest])
             smallest = right;
         if (smallest != i) {
             swap(events[i], events[smallest]);
@@ -76,7 +76,7 @@ public:
         events.push_back(k);
 
         int i = events.size() - 1;
-        while (i != 0 and events[i] < events[(i - 1) >> 1] ) // if Parent has more value than child
+        while (i != 0 and *events[i] < *events[(i - 1) >> 1] ) // if Parent has more value than child
         {
             swap(events[i], events[(i - 1) >> 1]);
             i = (i - 1) >> 1;

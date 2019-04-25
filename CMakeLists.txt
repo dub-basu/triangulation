@@ -14,6 +14,6 @@ add_executable(triangulation
                src/Polygon.h 
                src/Triangulator.cpp 
                src/EventQueue.tpp
-               src/Status.h 
+               src/Status.tpp
                src/LSISegment.cpp 
                src/LSISegment.h )

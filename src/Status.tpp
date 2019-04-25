@@ -126,26 +126,32 @@ private:
         return current;
     }
 
-    Node* __remove(Node* node, T key){
+    Node* __remove(Node* root, T key){
         int left=0;
+        //cout<<(root->key)<<" and key="<<key<<endl;
         if (root == NULL)return root;
+        //cout<<"Root==NULL done"<<endl;
         if (key < root->key)
         {
+            //cout<<"C1"<<endl;
             root->left = __remove(root->left, key),left++;
         }
         else if (key > root->key)
         {
+//            cout<<"C2"<<endl;
+//            cout<<"Root->key="<<root->key<<" key="<<key<<endl;
             root->right = __remove(root->right, key),left--;
         }
         else
-
         {
             if(key!= root->key and checkLeaf(root))return root;
             if (root->left == NULL or root->right == NULL)
             {
+                //cout<<"C4"<<endl;
                 Node *temp = root->left ? root->left : root->right;
                 if (temp == NULL)//Node is a leaf
                 {
+                    //cout<<"C5"<<endl;
                     temp = root;
                     root = NULL;
 
@@ -156,12 +162,13 @@ private:
             }
             else
             {
+                //cout<<"C7"<<endl;
                 struct Node* temp = minValueNode(root->right);
                 root->key = temp->key;
                 root->right = __remove(root->right, temp->key);
             }
         }
-
+        //cout<<"all if-else done"<<endl;
         if (root == NULL)return root;
 
         root->height = 1 + max(height(root->left), height(root->right));
@@ -206,7 +213,9 @@ public:
      * Removes element from tree
      * Does nothing is element is not present
      */
-    void remove(T key);
+    void remove(T key){
+        root = __remove(root, key);
+    }
 
     /**
      * Searches for element to the left of the param
@@ -217,6 +226,7 @@ public:
      */
     T* searchL(T key){
         Node *curr=root;
+        //cout<<"SearchL"<<key<<" "<<(root->key)<<endl;
         while(curr->left != NULL)
             curr = curr->left;
         if(curr->key == key)

@@ -32,7 +32,7 @@ bool LSISegment::operator<(const LSISegment& lsi) const {
     Point lsi_upper = lsi.start_pt(), lsi_lower = lsi.end_pt();
 
     // const LSISegment debug = LSISegment(LineSegment(Point(1,9),Point(3,8)));
-
+    //cout<<"Comparing "<<(*this)<<" "<<lsi<<endl;
     if((this_upper.y < this_lower.y) || ( abs(this_upper.y - this_lower.y)<ERROR && this_upper.x >= this_lower.x)){
         Point temp = this_upper;
         this_upper = this_lower;
@@ -63,19 +63,19 @@ bool LSISegment::operator<(const LSISegment& lsi) const {
             return true;
         }
         if (lastReference == this_lower && lastReference == lsi_lower){
-//            cout << "LL\n";
+            //cout << "LL\n";
             Point comp = Point(lastReference.x, lastReference.y + DELTA);
 
             bool toReturn = this->horizontal_projection(comp).x
                             < lsi.horizontal_projection(comp).x;
 //            cout << toReturn << "\n";
-            //   cout << "3."<< toReturn << "\n";
+               //cout << "3."<< toReturn << "\n";
 
             return toReturn;
         }
         if (lastReference == this_lower && lastReference == lsi_upper){
 //            cout << false << "\n";
-            //    cout << "4."<< false << "\n";
+               //cout << "4."<< false << "\n";
 
             return false;
         }
@@ -98,7 +98,9 @@ bool LSISegment::operator<(const LSISegment& lsi) const {
         //if (lastReference == Point(1,6)){
         //    cout << toReturn << "\n";
         //}
-//        cout << "5."<< toReturn << "\n";
+
+       //cout << "5. Verdict="<< toReturn << "\n";
+       //cout<<"Last Ref:"<<lastReference<<endl;
 
         return toReturn;
     }
@@ -115,7 +117,7 @@ bool LSISegment::operator<(const LSISegment& lsi) const {
         }
         bool toReturn = this->horizontal_projection(comp).x
                         < lsi.horizontal_projection(comp).x;
-//        cout << "6."<< toReturn;// << "\n";
+        //cout << "6."<< toReturn;// << "\n";
 //        cout <<"\t"<<this->horizontal_projection(comp).x << " < "
 //             << lsi.horizontal_projection(comp).x << "\n";
         return toReturn;

@@ -29,6 +29,15 @@ public:
     HalfEdge(Vertex*);
 
     bool operator< (const HalfEdge& );
+    bool operator<= (const HalfEdge& );
+    bool operator== (const HalfEdge& );
+    bool operator> (const HalfEdge& );
+    bool operator>= (const HalfEdge& );
+    bool operator!=(const HalfEdge &rt);
+
+
+
+    // HalfEdge& operator= (const HalfEdge& );
 
     friend std::ostream& operator<<(std::ostream& os, const HalfEdge& halfEdge);
 
@@ -42,6 +51,7 @@ public:
     HalfEdge* incidentEdge;
     Vertex(Point);
     bool operator< (const Vertex&);
+    //bool operator<(const Vertex * rt);
     vertexType type;
 };
 
@@ -52,12 +62,12 @@ public:
 };
 
 class DCEL {
-    vector <Face*> faces;
+
 
 
 public:
     //map<Point, Vertex> pointsInDCEL ;
-
+    vector <Face*> faces;
     vector<Vertex*> points;
 
     DCEL();

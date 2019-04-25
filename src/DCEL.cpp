@@ -272,16 +272,30 @@ bool Vertex::operator<(const Vertex & rt) {
     }
 
     return false;
-
 }
+
+//bool Vertex::operator<(const Vertex * rt) {
+//    //return false;
+//    if (this->y > rt->y){
+//        return true;
+//    }
+//
+//    if (fabsl(this->y - rt->y) < 0.0001){
+//        return this->x < rt->x;
+//    }
+//
+//    return false;
+//
+//}
+
 
 HalfEdge::HalfEdge(Vertex *start) {
     this->origin = start;
     this->incidentFace = NULL;
-    this->next = NULL;
-    this->previous = NULL;
-    this->twin = NULL;
-    this->helper = NULL;
+    this->next = this;
+    this->previous = this;
+    this->twin = this;
+    this->helper = start;
 }
 
 bool HalfEdge::operator<(const HalfEdge &rt) {
@@ -303,6 +317,95 @@ bool HalfEdge::operator<(const HalfEdge &rt) {
 
 }
 
+bool HalfEdge::operator<=(const HalfEdge &rt) {
+    Point thisStart = Point(this->origin->x, this->origin->y);
+    Point thisEnd = Point(this->next->origin->x, this->next->origin->y);
+
+    LineSegment thisSeg(thisStart, thisEnd);
+    LSISegment thisLSISeg(thisSeg);
+
+    //Making other seg
+    Point rtStart = Point(rt.origin->x, rt.origin->y);
+    Point rtEnd = Point(rt.next->origin->x, rt.next->origin->y);
+    LineSegment rtSeg(rtStart, rtEnd);
+    LSISegment rtLSISeg(rtSeg);
+
+    LSISegment::lastReference = HalfEdge::lastReference;
+    return !(rtLSISeg < thisLSISeg);
+}
+
+bool HalfEdge::operator==(const HalfEdge &rt) {
+    Point thisStart = Point(this->origin->x, this->origin->y);
+    Point thisEnd = Point(this->next->origin->x, this->next->origin->y);
+
+    LineSegment thisSeg(thisStart, thisEnd);
+    LSISegment thisLSISeg(thisSeg);
+//    cout<<"In equality!!"<<endl;
+//    cout<<(*this)<<" "<<rt<<endl;
+    //Making other seg
+    Point rtStart = Point(rt.origin->x, rt.origin->y);
+    Point rtEnd = Point(rt.next->origin->x, rt.next->origin->y);
+    LineSegment rtSeg(rtStart, rtEnd);
+    LSISegment rtLSISeg(rtSeg);
+
+    LSISegment::lastReference = HalfEdge::lastReference;
+    return !(thisLSISeg < rtLSISeg) && !(rtLSISeg < thisLSISeg);
+}
+
+bool HalfEdge::operator>(const HalfEdge &rt) {
+    Point thisStart = Point(this->origin->x, this->origin->y);
+    Point thisEnd = Point(this->next->origin->x, this->next->origin->y);
+
+    LineSegment thisSeg(thisStart, thisEnd);
+    LSISegment thisLSISeg(thisSeg);
+
+    //Making other seg
+    Point rtStart = Point(rt.origin->x, rt.origin->y);
+    Point rtEnd = Point(rt.next->origin->x, rt.next->origin->y);
+    LineSegment rtSeg(rtStart, rtEnd);
+    LSISegment rtLSISeg(rtSeg);
+
+    LSISegment::lastReference = HalfEdge::lastReference;
+    return (rtLSISeg < thisLSISeg) ;
+}
+
+bool HalfEdge::operator>=(const HalfEdge &rt) {
+    Point thisStart = Point(this->origin->x, this->origin->y);
+    Point thisEnd = Point(this->next->origin->x, this->next->origin->y);
+
+    LineSegment thisSeg(thisStart, thisEnd);
+    LSISegment thisLSISeg(thisSeg);
+
+    //Making other seg
+    Point rtStart = Point(rt.origin->x, rt.origin->y);
+    Point rtEnd = Point(rt.next->origin->x, rt.next->origin->y);
+    LineSegment rtSeg(rtStart, rtEnd);
+    LSISegment rtLSISeg(rtSeg);
+
+    LSISegment::lastReference = HalfEdge::lastReference;
+    return !(thisLSISeg < rtLSISeg);
+}
+
+bool HalfEdge::operator!=(const HalfEdge &rt) {
+    Point thisStart = Point(this->origin->x, this->origin->y);
+    Point thisEnd = Point(this->next->origin->x, this->next->origin->y);
+
+    LineSegment thisSeg(thisStart, thisEnd);
+    LSISegment thisLSISeg(thisSeg);
+
+    //Making other seg
+    Point rtStart = Point(rt.origin->x, rt.origin->y);
+    Point rtEnd = Point(rt.next->origin->x, rt.next->origin->y);
+    LineSegment rtSeg(rtStart, rtEnd);
+    LSISegment rtLSISeg(rtSeg);
+
+    LSISegment::lastReference = HalfEdge::lastReference;
+    return !(thisLSISeg == rtLSISeg);
+}
+
+
+
+
 std::ostream& operator<<(std::ostream& os, const HalfEdge& halfEdge){
     os  << "HalfEdge starting at " << *halfEdge.origin << " to "
         << *halfEdge.next->origin << "\n";
@@ -311,3 +414,16 @@ std::ostream& operator<<(std::ostream& os, const HalfEdge& halfEdge){
 
 
 Vertex HalfEdge::lastReference = Vertex(NAN_POINT);
+
+
+
+//HalfEdge& HalfEdge::operator=(const HalfEdge & he) {
+//    this->origin = he.origin;
+//    //Vertex* end;
+//    this->twin = he.twin;
+//    this->incidentFace = he.incidentFace;
+//    this->next = he.next;
+//    HalfEdge* previous;
+//
+//    Vertex* helper;
+//}

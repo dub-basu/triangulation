@@ -4,6 +4,7 @@
 #include "primitives.h"
 #include "DCEL.h"
 #include "Status.tpp"
+#include "Triangulator.cpp"
 
 
 using namespace std;
@@ -53,6 +54,10 @@ int main() {
     HalfEdge* left = dcel.points[3]->incidentEdge;
     HalfEdge* right = dcel.points[0]->incidentEdge;
     cout << (*left < *right) << "\n";
+
+    Triangulator t= Triangulator(Polygon(polyPoints));
+    t.makeMonotone();
+
 
 
     return 0;
