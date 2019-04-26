@@ -2,31 +2,21 @@
 // Created by Abhishek Pandey on 24-04-2019.
 //
 
-#include <iostream>
-#include <stack>
-#include "Polygon.h"
-#include "DCEL.h"
-#include "EventQueue.tpp"
-#include "Status.tpp"
-#include <assert.h>
 
+#include "Triangulator.h"
 using namespace std;
 
-class Triangulator
-{
-    DCEL tri;
-    Polygon P;
-    EventQueue<Vertex*> pq;
-    Status <HalfEdge> st;
 
-    void handleStart(Vertex *v)
+
+
+    void Triangulator::handleStart(Vertex *v)
     {
         st.insert(*v->incidentEdge);
         cout<<"Set the helper of "<<*v->incidentEdge<<" as "<<*v<<endl;
         v->incidentEdge->helper=v;
     }
 
-    void handleEnd(Vertex *v)
+    void Triangulator::handleEnd(Vertex *v)
     {
         vertexType temp=v->incidentEdge->twin->next->twin->helper->type;
         HalfEdge *prev=v->incidentEdge->twin->next->twin;
@@ -41,7 +31,7 @@ class Triangulator
         st.inorder();cout<<endl;
     }
 
-    void handleSplit(Vertex *v)
+    void Triangulator::handleSplit(Vertex *v)
     {
         HalfEdge *i=st.searchL(*v->incidentEdge);
         i=i->origin->incidentEdge;
@@ -56,9 +46,9 @@ class Triangulator
         cout<<"Set "<<*i<<" helper as "<<*v<<" and "<<v->incidentEdge<<" helper as"<<v<<endl;
     }
 
-    void handleMerge(Vertex *v)
+    void Triangulator::handleMerge(Vertex *v)
     {
-        vertexType temp=v->incidentEdge->twin->next->twin->helper->type;
+        vertexType temp;
         cout<<"V="<<*v<<endl;
         cout<<"Temp="<<(*v->incidentEdge->twin->next->twin->helper)<<endl;
         HalfEdge *prev=v->incidentEdge->twin->next->twin;
@@ -87,7 +77,7 @@ class Triangulator
         cout<<"Set "<<*i<<" helper as "<<*i->helper<<endl;
     }
 
-    bool isRight(Vertex *prevV, Vertex *v)
+    bool Triangulator::isRight(Vertex *prevV, Vertex *v)
     {
         //cout<<*prevV<<" "<<*v<<" VIA?? ";
         if(fabsl(prevV->y-v->y)<=1e-6)
@@ -102,7 +92,7 @@ class Triangulator
         //cout<<"Via C3"<<endl;
         return false;
     }
-    void handleRegular(Vertex *v)
+    void Triangulator::handleRegular(Vertex *v)
     {
         HalfEdge *i=v->incidentEdge->twin->next->twin; //Ei-1
         Vertex *prevV=i->origin;
@@ -143,7 +133,7 @@ class Triangulator
 
 
     //TODO : Implement & Test chains.
-    bool checkSameChain(Vertex *v1, Vertex*v2, vector<Vertex *>&lChain,vector<Vertex *> rChain)
+    bool Triangulator::checkSameChain(Vertex *v1, Vertex*v2, vector<Vertex *>&lChain,vector<Vertex *> rChain)
     {
         int sign1,sign2;
 
@@ -187,7 +177,7 @@ class Triangulator
 
 
 
-    void triangulateMonotonePolygon(Face *f)
+    void Triangulator::triangulateMonotonePolygon(Face *f)
     {
         vector <Vertex *> s;
         EventQueue<Vertex*> l;
@@ -362,11 +352,11 @@ class Triangulator
 
     }
 
-public:
-    Triangulator (Polygon a)
-    {
 
-        P=Polygon(a.pointList);
+Triangulator::Triangulator (Polygon a)
+    {
+        //TODO :Draw polygon
+        this->P=Polygon(a.pointList);
         //cout<<P.pointList.size()<<" is size of pointlist!!"<<endl;
         //for(auto i:P.pointList)cout<<i<<" ";cout<<endl;
         tri=DCEL(P);
@@ -400,7 +390,7 @@ public:
 
     }
 
-    void makeMonotone ()
+    void Triangulator::makeMonotone ()
     {
         //Event Queue done.
         while(pq.size()>0)
@@ -469,4 +459,4 @@ public:
 
     }
 
-};
+

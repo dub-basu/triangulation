@@ -16,4 +16,4 @@ add_executable(triangulation
                src/EventQueue.tpp
                src/Status.tpp
                src/LSISegment.cpp 
-               src/LSISegment.h )
+               src/LSISegment.h src/Triangulator.h)

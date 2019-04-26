@@ -4,7 +4,7 @@
 #include "primitives.h"
 #include "DCEL.h"
 #include "Status.tpp"
-#include "Triangulator.cpp"
+#include "Triangulator.h"
 
 
 using namespace std;
