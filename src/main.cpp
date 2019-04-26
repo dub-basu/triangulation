@@ -1,34 +1,49 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 #include "primitives.h"
 #include "DCEL.h"
 #include "Status.tpp"
 #include "Triangulator.h"
 
+#define DEFAULT_FILENAME "../testcases/default_case.txt"
 
 using namespace std;
 
-int main() {
+void get_points_from_file(string filename, vector<Point>& points){
+    points.clear();
+    ifstream fin;
+    fin.open(filename, ios::in);
+    string pt_str;
+    string comma = ",";
+    while(fin >> pt_str){
+        pt_str = pt_str.substr(1, pt_str.size() - 2);
+        string p1_x = pt_str.substr(0,pt_str.find(comma));
+        string p1_y = pt_str.substr(pt_str.find(comma) + 1, pt_str.size());
+        Point pt(stold(p1_x), stold(p1_y));
+        points.push_back(pt);
+    }
+    fin.close();
+}
+
+int main(int argc, char** argv) {
     vector<Point> polyPoints;
 
-//    Test case 1.
-    polyPoints.push_back(Point(0,0));
-    polyPoints.push_back(Point(1,1));
-    polyPoints.push_back(Point(5,-1));
-    polyPoints.push_back(Point(4,3));
-    polyPoints.push_back(Point(8,2));
-    polyPoints.push_back(Point(9,8));
-    polyPoints.push_back(Point(6,7));
-    polyPoints.push_back(Point(5,10));
-    polyPoints.push_back(Point(3,9));
-    polyPoints.push_back(Point(1,10));
-    polyPoints.push_back(Point(-2,8));
-    polyPoints.push_back(Point(0,7));
-    polyPoints.push_back(Point(-3,6));
-    polyPoints.push_back(Point(-1,5));
-    polyPoints.push_back(Point(-3,3));
+    string filename;
+    if(argc > 1){
+        filename = argv[1];
+        cout << filename << endl;
+    } else {
+        filename = DEFAULT_FILENAME;
+    }
+    get_points_from_file(filename, polyPoints);
 
+    cout << "Input Points: " << endl;
+    for(auto i: polyPoints){
+        cout << i << ", " << endl;
+    }
+    cout << "------------" << endl;
 
 //    Test case 2.
 //    polyPoints.push_back(Point(0,0));
