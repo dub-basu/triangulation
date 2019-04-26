@@ -20,6 +20,8 @@ class TriangulatorGraphix: public Graphix {
         
         std::vector<Point> input_points;
         std::vector<LineSegment> edges;
+        Point event_pt;
+        LineSegment sweep_line;
 
         void draw_point(Point, GLfloat red=0, GLfloat green=0, GLfloat blue=0);
         void update_scene();
@@ -34,6 +36,10 @@ class TriangulatorGraphix: public Graphix {
         void clear_lines();
         void remove_point(Point);
         void add_point(Point);
+        void shift_sweep_line(Point);
+        void draw_sweep_line();
+        void draw_event_point();
+
 };
 
 #endif

@@ -272,7 +272,17 @@ using namespace std;
 
         Vertex *u1,*u2,*uj,*prevu;
         u1=l.extractMin();
+        if(this -> visualise){
+            gfx -> update_event(*u1);
+            gfx -> render();
+        }
+
         u2=l.extractMin();
+        if(this -> visualise){
+            gfx -> update_event(*u2);
+            gfx -> render();
+        }
+
         s.push_back(u1);
         s.push_back(u2);
         prevu=u2;
@@ -280,6 +290,11 @@ using namespace std;
         {
 //            cout<<"j="<<j<<endl;
             uj=l.extractMin();
+            if(this -> visualise){
+                gfx -> update_event(*uj);
+                gfx -> render();
+            }
+           
             cout<<l.size()<<endl;
             cout<<"Uj="<<*uj<<" Top="<<*s.back()<<" Same chain? "<<checkSameChain(uj,s.back(),lChain,rChain)<<endl;
             if(!checkSameChain(uj,s.back(),lChain,rChain))
@@ -447,6 +462,10 @@ Triangulator::Triangulator(Polygon a, TriangulatorGraphix* gfx_ptr)
         while(pq.size()>0)
         {
             Vertex *i=pq.extractMin();
+            if(this -> visualise){
+                gfx -> update_event(*i);
+                gfx -> render();
+            }
             cout<<"Handling "<<(*i)<<" in the queue, of type "<<" ";
 
             switch(i->type)
