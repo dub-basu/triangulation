@@ -22,28 +22,38 @@ class Triangulator
     void handleStart(Vertex *v)
     {
         st.insert(*v->incidentEdge);
+        cout<<"Set the helper of "<<*v->incidentEdge<<" as "<<*v<<endl;
         v->incidentEdge->helper=v;
     }
 
     void handleEnd(Vertex *v)
     {
         vertexType temp=v->incidentEdge->twin->next->twin->helper->type;
+        HalfEdge *prev=v->incidentEdge->twin->next->twin;
         if(temp==vertexType::MERGE)
         {
             //TODO Add Edge
-            tri.addEdge(v,v->incidentEdge->twin->next->twin->helper);
+            cout<<"Added edge b/w "<<*v<<" "<<*prev->helper<<" to make monotone"<<endl;
+            tri.addEdge(v,prev->helper);
         }
-        st.remove(*v->incidentEdge->twin->next->twin);
+        cout<<"Removing edge "<<*prev<<" from status"<<endl;
+        st.remove(*prev);
+        st.inorder();cout<<endl;
     }
 
     void handleSplit(Vertex *v)
     {
         HalfEdge *i=st.searchL(*v->incidentEdge);
+        i=i->origin->incidentEdge;
+        cout<<"Left to "<<*v<<" is edge "<<*i<<endl;
         //TODO Add Edge
         tri.addEdge(v,i->helper);
+        cout<<"Added edge b/w "<<*v<<" "<<*i->helper<<endl;
         i->helper=v;
+        cout<<"Inserted edge "<<*v->incidentEdge<<endl;
         st.insert(*v->incidentEdge);
         v->incidentEdge->helper=v;
+        cout<<"Set "<<*i<<" helper as "<<*v<<" and "<<v->incidentEdge<<" helper as"<<v<<endl;
     }
 
     void handleMerge(Vertex *v)
@@ -51,24 +61,30 @@ class Triangulator
         vertexType temp=v->incidentEdge->twin->next->twin->helper->type;
         cout<<"V="<<*v<<endl;
         cout<<"Temp="<<(*v->incidentEdge->twin->next->twin->helper)<<endl;
+        HalfEdge *prev=v->incidentEdge->twin->next->twin;
+        temp=prev->helper->type;
         if(temp==vertexType::MERGE)
         {
             //TODO Add Edge
-            tri.addEdge(v,v->incidentEdge->twin->next->twin->helper);
-            cout<<"Added edge b/w "<<(*v)<<" "<<(*v->incidentEdge->twin->next->twin->helper)<<endl;
+            tri.addEdge(v,prev->helper);
+            cout<<"Added edge b/w "<<(*v)<<" "<<(*prev->helper)<<endl;
         }
-        //cout<<"Removing from status rn "<<(*v->incidentEdge->twin->next->twin)<<endl;
-        //st.inorder();
-        st.remove(*v->incidentEdge->twin->next->twin);
-        //cout<<"Removed from status "<<endl;
-        //st.inorder();
+        cout<<"Removing from status rn "<<(*prev)<<endl;
+        st.inorder();cout<<endl;
+        st.remove(*prev);
+        cout<<"Removed from status "<<endl;
+        st.inorder();cout<<endl;
         HalfEdge *i=st.searchL(*v->incidentEdge);
+        i=i->origin->incidentEdge;
+        cout<<"Left edge of "<<*v<<" is "<<*i<<endl;
         if(i->helper->type == vertexType::MERGE)
         {
             //TODO Add Edge
             tri.addEdge(v,i->helper);
+            cout<<"Added edge b/w "<<*v<<" "<<*i->helper<<endl;
         }
         i->helper=v;
+        cout<<"Set "<<*i<<" helper as "<<*i->helper<<endl;
     }
 
     bool isRight(Vertex *prevV, Vertex *v)
@@ -90,26 +106,37 @@ class Triangulator
     {
         HalfEdge *i=v->incidentEdge->twin->next->twin; //Ei-1
         Vertex *prevV=i->origin;
+        cout<<"Prev edge="<<*i<<endl;
         if(isRight(prevV,v))
         {
+            cout<<"Poly to Right "<<" helper of this edge"<<*i<<" is "<<*i->helper<<endl;
             if(i->helper->type==vertexType::MERGE)
             {
                 //TODO Add Edge
                 tri.addEdge(v,i->helper);
+                cout<<"Added edge b/w"<<*v<<" "<<*i->helper<<endl;
             }
             st.remove(*i);
             st.insert(*v->incidentEdge);
+            cout<<"Removed "<<*i<<" inserted "<<*v->incidentEdge<<endl;
+            st.inorder();cout<<endl;
             v->incidentEdge->helper=v;
+            cout<<"Set "<<*v->incidentEdge<<" helper to "<<*v<<endl;
         }
         else
         {
+            cout<<"Poly to Left"<<endl;
             HalfEdge *i = (st.searchL(*v->incidentEdge));
+            i=i->origin->incidentEdge;
+            cout<<"Left to "<<*v<<" is edge "<<*i<<endl;
             if(i->helper->type==vertexType::MERGE)
             {
                 //TODO Add Edge
                 tri.addEdge(v,i->helper);
+                cout<<"Added edge b/w "<<*v<<" "<<*i->helper<<endl;
             }
             i->helper=v;
+            cout<<"Helper of "<<*i->helper<<" = "<<*v<<endl;
         }
 
     }
@@ -379,7 +406,30 @@ public:
         while(pq.size()>0)
         {
             Vertex *i=pq.extractMin();
-            //cout<<"Handling "<<(*i)<<" in the queue "<<endl;
+            cout<<"Handling "<<(*i)<<" in the queue, of type "<<" ";
+
+            switch(i->type)
+            {
+                case vertexType::REGULAR:
+                    cout<<"Regular\n";
+                    break;
+                case vertexType::END:
+                    cout<<"End\n";
+                    break;
+                case vertexType ::MERGE:
+                    cout<<"Merge\n";
+                    break;
+                case vertexType ::SPLIT:
+                    cout<<"SPLIT\n";
+                    break;
+                case vertexType ::START:
+                    cout<<"START\n";
+                    break;
+                default :
+                    cout<<"ERROR\n";
+                    break;
+            }
+
             HalfEdge::lastReference = *i;
             if(i->type==vertexType::START)
             {

@@ -206,6 +206,7 @@ DCEL::DCEL(Polygon poly) {
     inner->startEdge = startEdge;
     outer->startEdge = startEdgeReverse;
     start->type=getType(poly.pointList[numPts-1],poly.pointList[0],poly.pointList[1]);
+    Vertex *prevV=start;
 
     for(int vIndex = 1; vIndex < numPts; vIndex++){
         Vertex *newVertex = new Vertex(poly.pointList[vIndex]);
@@ -223,6 +224,10 @@ DCEL::DCEL(Polygon poly) {
         newEdge->previous = lastEdge;
         newEdge->incidentFace = inner;
         lastEdge->next = newEdge;
+        if(prevV->y>newVertex->y or (fabsl(prevV->y-newVertex->y)<=1e-6 and prevV->x<newVertex->x) )
+            lastEdge->helper=prevV;
+        else
+            lastEdge->helper=newVertex;
 
         newEdgeReverse->next = lastEdgeReverse;
         newEdgeReverse->incidentFace = outer;
@@ -230,10 +235,16 @@ DCEL::DCEL(Polygon poly) {
 
         lastEdge = newEdge;
         lastEdgeReverse = newEdgeReverse;
+        prevV=newVertex;
     }
-
+    Vertex *newVertex=start;
     lastEdge->twin = startEdgeReverse;
     startEdgeReverse->twin = lastEdge;
+
+    if(prevV->y>newVertex->y or (fabsl(prevV->y-newVertex->y)<=1e-6 and prevV->x<newVertex->x) )
+        lastEdge->helper=prevV;
+    else
+        lastEdge->helper=newVertex;
 
 
     startEdge->previous = lastEdge;
@@ -413,7 +424,7 @@ bool HalfEdge::operator!=(const HalfEdge &rt) {
 
 std::ostream& operator<<(std::ostream& os, const HalfEdge& halfEdge){
     os  << "HalfEdge starting at " << *halfEdge.origin << " to "
-        << *halfEdge.next->origin << "\n";
+        << *halfEdge.next->origin;
     return os;
 }
 

@@ -12,6 +12,7 @@ using namespace std;
 int main() {
     vector<Point> polyPoints;
 
+//    Test case 1.
     polyPoints.push_back(Point(0,0));
     polyPoints.push_back(Point(1,1));
     polyPoints.push_back(Point(5,-1));
@@ -22,11 +23,23 @@ int main() {
     polyPoints.push_back(Point(5,10));
     polyPoints.push_back(Point(3,9));
     polyPoints.push_back(Point(1,10));
-    polyPoints.push_back(Point(-2,9));
+    polyPoints.push_back(Point(-2,8));
     polyPoints.push_back(Point(0,7));
     polyPoints.push_back(Point(-3,6));
     polyPoints.push_back(Point(-1,5));
     polyPoints.push_back(Point(-3,3));
+
+
+//    Test case 2.
+//    polyPoints.push_back(Point(0,0));
+//    polyPoints.push_back(Point(0,1));
+//    polyPoints.push_back(Point(3,0));
+//    polyPoints.push_back(Point(5,1));
+//    polyPoints.push_back(Point(6,3));
+//    polyPoints.push_back(Point(5,4));
+//    polyPoints.push_back(Point(3,3));
+//    polyPoints.push_back(Point(1,4));
+
 
     Polygon poly = Polygon(polyPoints,false);
 
