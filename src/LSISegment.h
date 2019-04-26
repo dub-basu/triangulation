@@ -13,13 +13,38 @@ private:
 public:
     static Vertex lastReference;
 
-
+    /**
+     * Standard operator < for the class
+     * @return
+     */
     bool operator< (const LSISegment&) const;
+    /**
+     * Standard operator > for the class
+     * @return
+     */
     bool operator> (const LSISegment&) const;
+    /**
+     * Standard operator != for the class
+     * @return
+     */
     bool operator != (const LSISegment&) const;
+    /**
+     * Standard operator <= for the class
+     * @return
+     */
     bool operator <= (const LSISegment&) const;
+    /**
+     * Default constructor for the class
+     */
     LSISegment();
+    /**
+     * Parameterised constructor for the class
+     */
     LSISegment(LineSegment);
+    /**
+     * Standard operator = for the class
+     * @return
+     */
     LSISegment& operator=(LSISegment& );
 };
 

@@ -280,7 +280,10 @@ public:
         return &(ans->key);
     }
 
-
+    /**
+     * Returns root of the tree
+     * @return root of the tree/status
+     */
 
     T* getRoot(){
         if(root == NULL) return NULL;
