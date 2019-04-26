@@ -1,15 +1,23 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <thread>
+#include <mutex>
 
 #include "primitives.h"
 #include "DCEL.h"
 #include "Status.tpp"
 #include "Triangulator.h"
+#include "TriangulatorGraphix.h"
 
+#define VISUALISE true
 #define DEFAULT_FILENAME "../testcases/default_case.txt"
 
 using namespace std;
+
+void init_graphix_class(TriangulatorGraphix* x){
+    x->loopie();
+}
 
 void get_points_from_file(string filename, vector<Point>& points){
     points.clear();
@@ -28,6 +36,17 @@ void get_points_from_file(string filename, vector<Point>& points){
 }
 
 int main(int argc, char** argv) {
+
+    std::mutex mtx;
+    TriangulatorGraphix* gfx_ptr;
+    thread* gfx_thread;
+    if(VISUALISE){
+        gfx_ptr = new TriangulatorGraphix(mtx);
+        gfx_thread = new thread(init_graphix_class, gfx_ptr);
+    } else {
+        gfx_ptr = NULL;
+    }
+
     vector<Point> polyPoints;
 
     string filename;
@@ -94,11 +113,9 @@ int main(int argc, char** argv) {
 
     cout << "Triangulating ";
     dcel.printDCEL();
-    Triangulator t= Triangulator(poly);
+    Triangulator t= Triangulator(poly, gfx_ptr);
     t.makeMonotone();
 
-
-
-
+    if(VISUALISE) gfx_thread -> join();
     return 0;
 }

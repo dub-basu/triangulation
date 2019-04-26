@@ -11,6 +11,7 @@
 #include "EventQueue.tpp"
 #include "Status.tpp"
 #include <assert.h>
+#include "TriangulatorGraphix.h"
 
 /**
  * Triangulator class has functionalities to triangualate a given Y monotone polygon.
@@ -25,6 +26,8 @@ class Triangulator
     Polygon P; //!< The initial Polygon P which is to be triangulated
     EventQueue<Vertex*> pq; //!< Event Queue storing the points in order visited by Sweep Line
     Status <HalfEdge> st; //!< Status for storing the edges and getting Left and Right neighbours
+    bool visualise; //!< Flag to determine whether visualisations are turned on
+    TriangulatorGraphix* gfx;/**< Pointer to graphix object. */
 
     /**
      * Handles START vertices
@@ -73,12 +76,19 @@ class Triangulator
      * @param f Face of the polygon too triangulate
      */
     void triangulateMonotonePolygon(Face *f);
+
+    /**
+     * Utility function to draw the iterate over the
+     * edges of the polygon and draw them
+    */
+    void draw_polygon(Polygon);
+
 public:
     /**
      * Constructor of the class. Makes DCEL given a Polygon a.
      * @param a Polygon to store in DCEL
      */
-    Triangulator (Polygon a);
+    Triangulator (Polygon a, TriangulatorGraphix* gfx = NULL);
     /**
      * Given a polygon, decomposes it into Y-Monotone Polygons
      */

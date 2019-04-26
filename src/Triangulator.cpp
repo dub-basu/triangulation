@@ -25,6 +25,10 @@ using namespace std;
             //TODO Add Edge
             cout<<"Added edge b/w "<<*v<<" "<<*prev->helper<<" to make monotone"<<endl;
             tri.addEdge(v,prev->helper);
+            if(this -> visualise){
+                gfx -> add_edge(*v, *(prev -> helper));
+                gfx -> render();
+            }
         }
         cout<<"Removing edge "<<*prev<<" from status"<<endl;
         st.remove(*prev);
@@ -38,6 +42,10 @@ using namespace std;
         cout<<"Left to "<<*v<<" is edge "<<*i<<endl;
         //TODO Add Edge
         tri.addEdge(v,i->helper);
+        if(this -> visualise){
+            gfx -> add_edge(*v, *(i -> helper));
+            gfx -> render();
+        }
         cout<<"Added edge b/w "<<*v<<" "<<*i->helper<<endl;
         i->helper=v;
         cout<<"Inserted edge "<<*v->incidentEdge<<endl;
@@ -57,6 +65,10 @@ using namespace std;
         {
             //TODO Add Edge
             tri.addEdge(v,prev->helper);
+            if(this -> visualise){
+                gfx -> add_edge(*v, *(prev -> helper));
+                gfx -> render();
+            }
             cout<<"Added edge b/w "<<(*v)<<" "<<(*prev->helper)<<endl;
         }
         cout<<"Removing from status rn "<<(*prev)<<endl;
@@ -71,6 +83,11 @@ using namespace std;
         {
             //TODO Add Edge
             tri.addEdge(v,i->helper);
+            if(this -> visualise){
+                gfx -> add_edge(*v, *(i -> helper));
+                gfx -> render();
+            }
+
             cout<<"Added edge b/w "<<*v<<" "<<*i->helper<<endl;
         }
         i->helper=v;
@@ -104,6 +121,11 @@ using namespace std;
             {
                 //TODO Add Edge
                 tri.addEdge(v,i->helper);
+                if(this -> visualise){
+                    gfx -> add_edge(*v, *(i -> helper));
+                    gfx -> render();
+                }
+
                 cout<<"Added edge b/w"<<*v<<" "<<*i->helper<<endl;
             }
             st.remove(*i);
@@ -123,6 +145,10 @@ using namespace std;
             {
                 //TODO Add Edge
                 tri.addEdge(v,i->helper);
+                if(this -> visualise){
+                    gfx -> add_edge(*v, *(i-> helper));
+                    gfx -> render();
+                }
                 cout<<"Added edge b/w "<<*v<<" "<<*i->helper<<endl;
             }
             i->helper=v;
@@ -272,6 +298,11 @@ using namespace std;
                             cout<<"Actually Added!!"<<endl;
                             //TODO Add Edge
                             tri.addEdge(uj,s.back());
+                            if(this -> visualise){
+                                gfx -> add_edge(*uj, *(s.back()));
+                                gfx -> render();
+                            }
+
 
                         }
 
@@ -320,7 +351,10 @@ using namespace std;
                         cout<<"Actually Added!!"<<endl;
                         //TODO Add Edge
                         tri.addEdge(uj,s.back());
-
+                        if(this -> visualise){
+                            gfx -> add_edge(*uj, *(s.back()));
+                            gfx -> render();
+                        }
                     }
 
                     s.pop_back();
@@ -342,6 +376,11 @@ using namespace std;
             cout<<"Adding edge b/w "<<(*un)<<" "<<(*s.back())<<endl;
             //TODO Add Edge
             tri.addEdge(un,s.back());
+            if(this -> visualise){
+                gfx -> add_edge(*un, *(s.back()));
+                gfx -> render();
+            }
+
             s.pop_back();
         }
         s.pop_back();
@@ -353,10 +392,22 @@ using namespace std;
     }
 
 
-Triangulator::Triangulator (Polygon a)
+Triangulator::Triangulator(Polygon a, TriangulatorGraphix* gfx_ptr)
     {
-        //TODO :Draw polygon
+
+        if(gfx_ptr != NULL){
+            this -> visualise = true;
+            this -> gfx = gfx_ptr;
+        } else {
+            this -> visualise = false;
+        }
+
         this->P=Polygon(a.pointList);
+        if(this -> visualise){
+            draw_polygon(this -> P);
+            std::cout << "\nadded" << std::endl;
+            gfx -> render();
+        }
         //cout<<P.pointList.size()<<" is size of pointlist!!"<<endl;
         //for(auto i:P.pointList)cout<<i<<" ";cout<<endl;
         tri=DCEL(P);
@@ -459,4 +510,12 @@ Triangulator::Triangulator (Polygon a)
 
     }
 
-
+void Triangulator::draw_polygon(Polygon P){
+    for(int i=0;i<P.pointList.size()-1;i++){
+        gfx -> add_edge(P.pointList[i], P.pointList[i+1]);
+        // std::cout << "\n\n line added \n\n";
+        // std::cout << P.pointList[i];
+        // std::cout << "point" << std::endl;
+    }
+    gfx -> add_edge(P.pointList[P.pointList.size()-1], P.pointList[0]);
+}
