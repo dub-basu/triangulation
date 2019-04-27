@@ -1,0 +1,52 @@
+\hypertarget{main_8cpp}{}\section{src/main.cpp File Reference}
+\label{main_8cpp}\index{src/main.\+cpp@{src/main.\+cpp}}
+
+
+\hyperlink{classPolygon}{Polygon} Triangulation.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include \char`\"{}primitives.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}D\+C\+E\+L.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Status.\+tpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Triangulator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Triangulator\+Graphix.\+h\char`\"{}}\newline
+Include dependency graph for main.\+cpp\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8cpp_ad305621bb5bea4ee94514de3ff27db83}\label{main_8cpp_ad305621bb5bea4ee94514de3ff27db83}} 
+\#define {\bfseries V\+I\+S\+U\+A\+L\+I\+SE}~true
+\item 
+\mbox{\Hypertarget{main_8cpp_a1e3d694f7ffb0df80011cb7c5b205897}\label{main_8cpp_a1e3d694f7ffb0df80011cb7c5b205897}} 
+\#define {\bfseries D\+E\+F\+A\+U\+L\+T\+\_\+\+F\+I\+L\+E\+N\+A\+ME}~\char`\"{}../testcases/default\+\_\+case.\+txt\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8cpp_ab200bc12011a5cfc92ddef15f0caf51d}\label{main_8cpp_ab200bc12011a5cfc92ddef15f0caf51d}} 
+void {\bfseries init\+\_\+graphix\+\_\+class} (\hyperlink{classTriangulatorGraphix}{Triangulator\+Graphix} $\ast$x)
+\item 
+\mbox{\Hypertarget{main_8cpp_aa90c84cf6f49815e4d84a9fcca78b3cd}\label{main_8cpp_aa90c84cf6f49815e4d84a9fcca78b3cd}} 
+void {\bfseries get\+\_\+points\+\_\+from\+\_\+file} (string filename, vector$<$ \hyperlink{classPoint}{Point} $>$ \&points)
+\item 
+\mbox{\Hypertarget{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+int {\bfseries main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classPolygon}{Polygon} Triangulation. 
+
+\begin{DoxyAuthor}{Author}
+Kaustubh Welankar 
+
+Basu Dubey 
+
+Abhishek Pandey 
+\end{DoxyAuthor}

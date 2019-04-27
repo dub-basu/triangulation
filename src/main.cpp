@@ -1,3 +1,19 @@
+/**@file main.cpp
+ * @author Kaustubh Welankar
+ * @author Basu Dubey
+ * @author Abhishek Pandey
+ * @brief Polygon Triangulation
+ * \mainpage Description
+ * Implementation of polygon triangulation algorithm
+ * \section Instructions
+ * Consult README.md
+ * \section Authors
+ * \verbatim
+  Abhishek Pandey       2016A7PS0081H
+  Basu Dubey            2016A7PS0136H
+  Kaustubh Welankar     2016A7PS0095H
+  \endverbatim
+ */
 #include <iostream>
 #include <vector>
 #include <fstream>
