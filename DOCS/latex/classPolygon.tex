@@ -1,0 +1,78 @@
+\hypertarget{classPolygon}{}\section{Polygon Class Reference}
+\label{classPolygon}\index{Polygon@{Polygon}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPolygon_ac183e712f8be1e13f1c9d5b4d4512ead}{Polygon} ()
+\item 
+\hyperlink{classPolygon_a67e4b3859fad4adfcf277c79280df0df}{Polygon} (vector$<$ \hyperlink{classPoint}{Point} $>$ \&, bool f=false)
+\item 
+bool \hyperlink{classPolygon_a034496e14ddd5516b3aed14c61d6fe02}{point\+Inside} (\hyperlink{classPoint}{Point} mid)
+\item 
+bool \hyperlink{classPolygon_acfe38a0974806e9706618d81b52ce8b7}{Line\+Inside} (\hyperlink{classPoint}{Point} p1, \hyperlink{classPoint}{Point} p2)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPolygon_a97193505e5b790557c7e18ed4bd025c5}\label{classPolygon_a97193505e5b790557c7e18ed4bd025c5}} 
+vector$<$ \hyperlink{classPoint}{Point} $>$ \hyperlink{classPolygon_a97193505e5b790557c7e18ed4bd025c5}{point\+List}
+\begin{DoxyCompactList}\small\item\em Stores the points in polygon in C\+CW order. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPolygon_ac183e712f8be1e13f1c9d5b4d4512ead}\label{classPolygon_ac183e712f8be1e13f1c9d5b4d4512ead}} 
+\index{Polygon@{Polygon}!Polygon@{Polygon}}
+\index{Polygon@{Polygon}!Polygon@{Polygon}}
+\subsubsection{\texorpdfstring{Polygon()}{Polygon()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Polygon\+::\+Polygon (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor of the class. \mbox{\Hypertarget{classPolygon_a67e4b3859fad4adfcf277c79280df0df}\label{classPolygon_a67e4b3859fad4adfcf277c79280df0df}} 
+\index{Polygon@{Polygon}!Polygon@{Polygon}}
+\index{Polygon@{Polygon}!Polygon@{Polygon}}
+\subsubsection{\texorpdfstring{Polygon()}{Polygon()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Polygon\+::\+Polygon (\begin{DoxyParamCaption}\item[{vector$<$ \hyperlink{classPoint}{Point} $>$ \&}]{points,  }\item[{bool}]{f = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Parameterised constructor. Takes the list of points and sorts them in C\+CW order to make the polygon. 
+\begin{DoxyParams}{Parameters}
+{\em f} & \+: True if we have to sort, else false. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classPolygon_acfe38a0974806e9706618d81b52ce8b7}\label{classPolygon_acfe38a0974806e9706618d81b52ce8b7}} 
+\index{Polygon@{Polygon}!Line\+Inside@{Line\+Inside}}
+\index{Line\+Inside@{Line\+Inside}!Polygon@{Polygon}}
+\subsubsection{\texorpdfstring{Line\+Inside()}{LineInside()}}
+{\footnotesize\ttfamily bool Polygon\+::\+Line\+Inside (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{p1,  }\item[{\hyperlink{classPoint}{Point}}]{p2 }\end{DoxyParamCaption})}
+
+Tells if a particular line is inside this polygon or not. 
+\begin{DoxyParams}{Parameters}
+{\em p1} & First end point of line \\
+\hline
+{\em p2} & Second end point of line \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if line is inside the \hyperlink{classPolygon}{Polygon} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPolygon_a034496e14ddd5516b3aed14c61d6fe02}\label{classPolygon_a034496e14ddd5516b3aed14c61d6fe02}} 
+\index{Polygon@{Polygon}!point\+Inside@{point\+Inside}}
+\index{point\+Inside@{point\+Inside}!Polygon@{Polygon}}
+\subsubsection{\texorpdfstring{point\+Inside()}{pointInside()}}
+{\footnotesize\ttfamily bool Polygon\+::point\+Inside (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{mid }\end{DoxyParamCaption})}
+
+Tells if a particular point is inside the polygon or not. 
+\begin{DoxyParams}{Parameters}
+{\em mid} & The point to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if point is inside the polygon 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Polygon.\+h\item 
+src/Polygon.\+cpp\end{DoxyCompactItemize}

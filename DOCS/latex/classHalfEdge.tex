@@ -1,0 +1,147 @@
+\hypertarget{classHalfEdge}{}\section{Half\+Edge Class Reference}
+\label{classHalfEdge}\index{Half\+Edge@{Half\+Edge}}
+
+
+Collaboration diagram for Half\+Edge\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classHalfEdge_af73e9a2bacfdc231be1fa45f8d1dc485}{Half\+Edge} (\hyperlink{classVertex}{Vertex} $\ast$)
+\item 
+\hyperlink{classHalfEdge_a9694f1dbddb8e3017ab75f5156d11da3}{Half\+Edge} ()
+\item 
+bool \hyperlink{classHalfEdge_afb0ef384d71a04d25a58a213b9ffba1f}{operator$<$} (const \hyperlink{classHalfEdge}{Half\+Edge} \&)
+\item 
+bool \hyperlink{classHalfEdge_ae43f49e340b90716c49cd11416085be8}{operator$<$=} (const \hyperlink{classHalfEdge}{Half\+Edge} \&)
+\item 
+bool \hyperlink{classHalfEdge_a8cb799e2e7e7e1db7b10c21f0f34dbb4}{operator==} (const \hyperlink{classHalfEdge}{Half\+Edge} \&)
+\item 
+bool \hyperlink{classHalfEdge_afd3c758041d7673381ee3382550b9a8d}{operator$>$} (const \hyperlink{classHalfEdge}{Half\+Edge} \&)
+\item 
+bool \hyperlink{classHalfEdge_aa59230a3014659a789ac70384f1e2699}{operator$>$=} (const \hyperlink{classHalfEdge}{Half\+Edge} \&)
+\item 
+bool \hyperlink{classHalfEdge_a45b92efec5d71ed7856b3a8073750047}{operator!=} (const \hyperlink{classHalfEdge}{Half\+Edge} \&rt)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHalfEdge_a8c90288f66768884f42b0588055eb4bf}\label{classHalfEdge_a8c90288f66768884f42b0588055eb4bf}} 
+\hyperlink{classVertex}{Vertex} $\ast$ \hyperlink{classHalfEdge_a8c90288f66768884f42b0588055eb4bf}{origin}
+\begin{DoxyCompactList}\small\item\em The incident vertex for this \hyperlink{classHalfEdge}{Half\+Edge}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHalfEdge_a37e7696a7131767a0c76e45ed69be4c5}\label{classHalfEdge_a37e7696a7131767a0c76e45ed69be4c5}} 
+\hyperlink{classHalfEdge}{Half\+Edge} $\ast$ \hyperlink{classHalfEdge_a37e7696a7131767a0c76e45ed69be4c5}{twin}
+\begin{DoxyCompactList}\small\item\em The twin of the Half Edge. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHalfEdge_a3d0414cecae8de073ce0d8b3a2c1b846}\label{classHalfEdge_a3d0414cecae8de073ce0d8b3a2c1b846}} 
+\hyperlink{classFace}{Face} $\ast$ \hyperlink{classHalfEdge_a3d0414cecae8de073ce0d8b3a2c1b846}{incident\+Face}
+\begin{DoxyCompactList}\small\item\em The incident face of this \hyperlink{classHalfEdge}{Half\+Edge}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHalfEdge_a5918db069bb8b4a89e471c01a14fc6e1}\label{classHalfEdge_a5918db069bb8b4a89e471c01a14fc6e1}} 
+\hyperlink{classHalfEdge}{Half\+Edge} $\ast$ \hyperlink{classHalfEdge_a5918db069bb8b4a89e471c01a14fc6e1}{next}
+\begin{DoxyCompactList}\small\item\em Pointer to next edge. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHalfEdge_a0050591d6482ebaf8dde9b792a0109a7}\label{classHalfEdge_a0050591d6482ebaf8dde9b792a0109a7}} 
+\hyperlink{classHalfEdge}{Half\+Edge} $\ast$ \hyperlink{classHalfEdge_a0050591d6482ebaf8dde9b792a0109a7}{previous}
+\begin{DoxyCompactList}\small\item\em Pointer to previous edge. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHalfEdge_afa4715b95706d513ac343f42e2dc067e}\label{classHalfEdge_afa4715b95706d513ac343f42e2dc067e}} 
+\hyperlink{classVertex}{Vertex} $\ast$ \hyperlink{classHalfEdge_afa4715b95706d513ac343f42e2dc067e}{helper}
+\begin{DoxyCompactList}\small\item\em Helper vertex of the edge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHalfEdge_aec4bcf8689ab12d9a6a1e41beec74ad9}\label{classHalfEdge_aec4bcf8689ab12d9a6a1e41beec74ad9}} 
+static \hyperlink{classVertex}{Vertex} \hyperlink{classHalfEdge_aec4bcf8689ab12d9a6a1e41beec74ad9}{last\+Reference} = \hyperlink{classVertex}{Vertex}(N\+A\+N\+\_\+\+P\+O\+I\+NT)
+\begin{DoxyCompactList}\small\item\em Last reference variable used for comparisons. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{classHalfEdge_aa0f4a0b4e7cf4c13857514f195007014}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classHalfEdge}{Half\+Edge} \&half\+Edge)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHalfEdge_af73e9a2bacfdc231be1fa45f8d1dc485}\label{classHalfEdge_af73e9a2bacfdc231be1fa45f8d1dc485}} 
+\index{Half\+Edge@{Half\+Edge}!Half\+Edge@{Half\+Edge}}
+\index{Half\+Edge@{Half\+Edge}!Half\+Edge@{Half\+Edge}}
+\subsubsection{\texorpdfstring{Half\+Edge()}{HalfEdge()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Half\+Edge\+::\+Half\+Edge (\begin{DoxyParamCaption}\item[{\hyperlink{classVertex}{Vertex} $\ast$}]{start }\end{DoxyParamCaption})}
+
+Parameterised Cosntructor of the class \mbox{\Hypertarget{classHalfEdge_a9694f1dbddb8e3017ab75f5156d11da3}\label{classHalfEdge_a9694f1dbddb8e3017ab75f5156d11da3}} 
+\index{Half\+Edge@{Half\+Edge}!Half\+Edge@{Half\+Edge}}
+\index{Half\+Edge@{Half\+Edge}!Half\+Edge@{Half\+Edge}}
+\subsubsection{\texorpdfstring{Half\+Edge()}{HalfEdge()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Half\+Edge\+::\+Half\+Edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor of the class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classHalfEdge_a45b92efec5d71ed7856b3a8073750047}\label{classHalfEdge_a45b92efec5d71ed7856b3a8073750047}} 
+\index{Half\+Edge@{Half\+Edge}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Half\+Edge@{Half\+Edge}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool Half\+Edge\+::operator!= (\begin{DoxyParamCaption}\item[{const \hyperlink{classHalfEdge}{Half\+Edge} \&}]{rt }\end{DoxyParamCaption})}
+
+Standard operator != for the class \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHalfEdge_afb0ef384d71a04d25a58a213b9ffba1f}\label{classHalfEdge_afb0ef384d71a04d25a58a213b9ffba1f}} 
+\index{Half\+Edge@{Half\+Edge}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Half\+Edge@{Half\+Edge}}
+\subsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Half\+Edge\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \hyperlink{classHalfEdge}{Half\+Edge} \&}]{rt }\end{DoxyParamCaption})}
+
+Standard operator $<$ for the class \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHalfEdge_ae43f49e340b90716c49cd11416085be8}\label{classHalfEdge_ae43f49e340b90716c49cd11416085be8}} 
+\index{Half\+Edge@{Half\+Edge}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!Half\+Edge@{Half\+Edge}}
+\subsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily bool Half\+Edge\+::operator$<$= (\begin{DoxyParamCaption}\item[{const \hyperlink{classHalfEdge}{Half\+Edge} \&}]{rt }\end{DoxyParamCaption})}
+
+Standard operator $<$ =for the class \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHalfEdge_a8cb799e2e7e7e1db7b10c21f0f34dbb4}\label{classHalfEdge_a8cb799e2e7e7e1db7b10c21f0f34dbb4}} 
+\index{Half\+Edge@{Half\+Edge}!operator==@{operator==}}
+\index{operator==@{operator==}!Half\+Edge@{Half\+Edge}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Half\+Edge\+::operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{classHalfEdge}{Half\+Edge} \&}]{rt }\end{DoxyParamCaption})}
+
+Standard operator == for the class \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHalfEdge_afd3c758041d7673381ee3382550b9a8d}\label{classHalfEdge_afd3c758041d7673381ee3382550b9a8d}} 
+\index{Half\+Edge@{Half\+Edge}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Half\+Edge@{Half\+Edge}}
+\subsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily bool Half\+Edge\+::operator$>$ (\begin{DoxyParamCaption}\item[{const \hyperlink{classHalfEdge}{Half\+Edge} \&}]{rt }\end{DoxyParamCaption})}
+
+Standard operator $>$ for the class \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHalfEdge_aa59230a3014659a789ac70384f1e2699}\label{classHalfEdge_aa59230a3014659a789ac70384f1e2699}} 
+\index{Half\+Edge@{Half\+Edge}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!Half\+Edge@{Half\+Edge}}
+\subsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily bool Half\+Edge\+::operator$>$= (\begin{DoxyParamCaption}\item[{const \hyperlink{classHalfEdge}{Half\+Edge} \&}]{rt }\end{DoxyParamCaption})}
+
+Standard operator $>$= for the class \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classHalfEdge_aa0f4a0b4e7cf4c13857514f195007014}\label{classHalfEdge_aa0f4a0b4e7cf4c13857514f195007014}} 
+\index{Half\+Edge@{Half\+Edge}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Half\+Edge@{Half\+Edge}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \hyperlink{classHalfEdge}{Half\+Edge} \&}]{half\+Edge }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Standard operator $<$$<$ for the class \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/D\+C\+E\+L.\+h\item 
+src/D\+C\+E\+L.\+cpp\end{DoxyCompactItemize}

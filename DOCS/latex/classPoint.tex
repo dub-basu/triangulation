@@ -1,0 +1,162 @@
+\hypertarget{classPoint}{}\section{Point Class Reference}
+\label{classPoint}\index{Point@{Point}}
+
+
+Stores point with X \& Y coordinate.  
+
+
+
+
+{\ttfamily \#include $<$primitives.\+h$>$}
+
+
+
+Inheritance diagram for Point\+:
+% FIG 0
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPoint_ad92f2337b839a94ce97dcdb439b4325a}{Point} ()
+\item 
+\hyperlink{classPoint_af7373698b9fafc53b0a5d06e511642e1}{Point} (coordinate x\+\_\+in, coordinate y\+\_\+in)
+\item 
+\hyperlink{classPoint}{Point} \& \hyperlink{classPoint_a2e142edc132377fdc6873f6549daab2d}{operator=} (const \hyperlink{classPoint}{Point} \&op)
+\item 
+bool \hyperlink{classPoint_ac7bc64b9a683d5fb35780c739779f2fc}{operator==} (const \hyperlink{classPoint}{Point} \&p2)
+\item 
+bool \hyperlink{classPoint_ade5f3908ec0e412aea8c3e12f5d0e26f}{operator!=} (const \hyperlink{classPoint}{Point} \&p2)
+\item 
+bool \hyperlink{classPoint_a2d285a505e84d64a96974d5247e8ae7a}{operator$<$} (const \hyperlink{classPoint}{Point} \&right) const
+\item 
+bool \hyperlink{classPoint_a2bc8aed929f6be2b543ba2f26b8a5f72}{is\+\_\+nan} ()
+\item 
+\mbox{\Hypertarget{classPoint_ad67dc97c8669077462b8b72492d68df0}\label{classPoint_ad67dc97c8669077462b8b72492d68df0}} 
+len {\bfseries euclidean\+\_\+distance} (\hyperlink{classPoint}{Point} pt)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+coordinate \hyperlink{classPoint_a2e5bf2da8d7f35ef2ca707ae5ec1929b}{x}
+\item 
+coordinate \hyperlink{classPoint_a4390d37c7ed19ad07212fc84df2fe26e}{y}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPoint_a2c120859855730a5ff9d2eaee48471c5}\label{classPoint_a2c120859855730a5ff9d2eaee48471c5}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classPoint}{Point} \&pt)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Stores point with X \& Y coordinate. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPoint_ad92f2337b839a94ce97dcdb439b4325a}\label{classPoint_ad92f2337b839a94ce97dcdb439b4325a}} 
+\index{Point@{Point}!Point@{Point}}
+\index{Point@{Point}!Point@{Point}}
+\subsubsection{\texorpdfstring{Point()}{Point()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Point\+::\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Constructor, makes a point with x \& y coordinates 0 \mbox{\Hypertarget{classPoint_af7373698b9fafc53b0a5d06e511642e1}\label{classPoint_af7373698b9fafc53b0a5d06e511642e1}} 
+\index{Point@{Point}!Point@{Point}}
+\index{Point@{Point}!Point@{Point}}
+\subsubsection{\texorpdfstring{Point()}{Point()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Point\+::\+Point (\begin{DoxyParamCaption}\item[{coordinate}]{x\+\_\+in,  }\item[{coordinate}]{y\+\_\+in }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+in} & \+: X coordinate of point \\
+\hline
+{\em y\+\_\+in} & \+: Y coordinate of point \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classPoint_a2bc8aed929f6be2b543ba2f26b8a5f72}\label{classPoint_a2bc8aed929f6be2b543ba2f26b8a5f72}} 
+\index{Point@{Point}!is\+\_\+nan@{is\+\_\+nan}}
+\index{is\+\_\+nan@{is\+\_\+nan}!Point@{Point}}
+\subsubsection{\texorpdfstring{is\+\_\+nan()}{is\_nan()}}
+{\footnotesize\ttfamily bool Point\+::is\+\_\+nan (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Checks if a point is a N\+A\+N\+\_\+\+P\+O\+I\+NT \begin{DoxyReturn}{Returns}
+true if point is a N\+A\+N\+\_\+\+P\+O\+I\+NT 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPoint_ade5f3908ec0e412aea8c3e12f5d0e26f}\label{classPoint_ade5f3908ec0e412aea8c3e12f5d0e26f}} 
+\index{Point@{Point}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Point@{Point}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool Point\+::operator!= (\begin{DoxyParamCaption}\item[{const \hyperlink{classPoint}{Point} \&}]{p2 }\end{DoxyParamCaption})}
+
+Overloaded != operator. Refer to = for point 
+\begin{DoxyParams}{Parameters}
+{\em p2} & -\/ \hyperlink{classPoint}{Point} to be compared with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if points have at least one different coordinate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPoint_a2d285a505e84d64a96974d5247e8ae7a}\label{classPoint_a2d285a505e84d64a96974d5247e8ae7a}} 
+\index{Point@{Point}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Point@{Point}}
+\subsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Point\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \hyperlink{classPoint}{Point} \&}]{right }\end{DoxyParamCaption}) const}
+
+This operator does not have any semantic meaning A hard ordering of points has been done to ensure Points can be inserted into S\+TL containers 
+\begin{DoxyParams}{Parameters}
+{\em right} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPoint_a2e142edc132377fdc6873f6549daab2d}\label{classPoint_a2e142edc132377fdc6873f6549daab2d}} 
+\index{Point@{Point}!operator=@{operator=}}
+\index{operator=@{operator=}!Point@{Point}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{classPoint}{Point} \& Point\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{classPoint}{Point} \&}]{op }\end{DoxyParamCaption})}
+
+Standard overloading the = operator 
+\begin{DoxyParams}{Parameters}
+{\em op} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+point with coordinates as that of input point 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPoint_ac7bc64b9a683d5fb35780c739779f2fc}\label{classPoint_ac7bc64b9a683d5fb35780c739779f2fc}} 
+\index{Point@{Point}!operator==@{operator==}}
+\index{operator==@{operator==}!Point@{Point}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Point\+::operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{classPoint}{Point} \&}]{p2 }\end{DoxyParamCaption})}
+
+Two points are equal if they have same x \& y coordinates 
+\begin{DoxyParams}{Parameters}
+{\em p2} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the points are same 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classPoint_a2e5bf2da8d7f35ef2ca707ae5ec1929b}\label{classPoint_a2e5bf2da8d7f35ef2ca707ae5ec1929b}} 
+\index{Point@{Point}!x@{x}}
+\index{x@{x}!Point@{Point}}
+\subsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily coordinate Point\+::x}
+
+the X coordinate of the point can be accessed publicly \mbox{\Hypertarget{classPoint_a4390d37c7ed19ad07212fc84df2fe26e}\label{classPoint_a4390d37c7ed19ad07212fc84df2fe26e}} 
+\index{Point@{Point}!y@{y}}
+\index{y@{y}!Point@{Point}}
+\subsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily coordinate Point\+::y}
+
+the X coordinate of the point can be accessed publicly 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/primitives.\+h\item 
+src/primitives.\+cpp\end{DoxyCompactItemize}

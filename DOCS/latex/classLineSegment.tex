@@ -1,0 +1,174 @@
+\hypertarget{classLineSegment}{}\section{Line\+Segment Class Reference}
+\label{classLineSegment}\index{Line\+Segment@{Line\+Segment}}
+
+
+Class for line segments.  
+
+
+
+
+{\ttfamily \#include $<$primitives.\+h$>$}
+
+
+
+Inheritance diagram for Line\+Segment\+:
+% FIG 0
+
+
+Collaboration diagram for Line\+Segment\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLineSegment_a691e185edf3aa7e2dc12307f9ef4be6b}{Line\+Segment} (\hyperlink{classPoint}{Point} p1, \hyperlink{classPoint}{Point} p2)
+\begin{DoxyCompactList}\small\item\em Constructor, specifying two endpoints of the segment. \end{DoxyCompactList}\item 
+bool \hyperlink{classLineSegment_a1b18c795d8c3c6f2724074062967671e}{contains\+\_\+point} (\hyperlink{classPoint}{Point} \&pt) const
+\item 
+\hyperlink{classPoint}{Point} \hyperlink{classLineSegment_a3bdc73ce4696a76b7c7dd143556c95b6}{intersects\+\_\+at} (\hyperlink{classLineSegment}{Line\+Segment} ls)
+\item 
+\hyperlink{classPoint}{Point} \hyperlink{classLineSegment_a51a9d2fcca6b3ff03cb51fd4d8fae4ba}{horizontal\+\_\+projection} (\hyperlink{classPoint}{Point} pt) const
+\item 
+bool \hyperlink{classLineSegment_ae73906b7230adbccf243c4b8dc6482b3}{operator==} (const \hyperlink{classLineSegment}{Line\+Segment} \&l2)
+\item 
+\hyperlink{classPoint}{Point} \hyperlink{classLineSegment_abe9136323cfe46be663907cbc1e3da2d}{start\+\_\+pt} () const
+\item 
+\hyperlink{classPoint}{Point} \hyperlink{classLineSegment_aa6c90340de500bb72bdde2114f838d57}{end\+\_\+pt} () const
+\item 
+bool \hyperlink{classLineSegment_a3364f7089cf7b650efe389475ddd0f12}{is\+\_\+nan} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLineSegment_ad0b0d8deb67c29a21dc5f7685a7ca944}\label{classLineSegment_ad0b0d8deb67c29a21dc5f7685a7ca944}} 
+\hyperlink{classPoint}{Point} {\bfseries start\+\_\+point}
+\item 
+\mbox{\Hypertarget{classLineSegment_a45fe4522c4f0a050f0103d1e8475fc14}\label{classLineSegment_a45fe4522c4f0a050f0103d1e8475fc14}} 
+\hyperlink{classPoint}{Point} {\bfseries end\+\_\+point}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLineSegment_aa6fe02d7d9f8ce3a0da5f6008b607850}\label{classLineSegment_aa6fe02d7d9f8ce3a0da5f6008b607850}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \hyperlink{classLineSegment}{Line\+Segment} \&l)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for line segments. 
+
+There is an inherent ordering between the two end points. So, initialising order in constructor does not affect the behaviour of the object 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLineSegment_a691e185edf3aa7e2dc12307f9ef4be6b}\label{classLineSegment_a691e185edf3aa7e2dc12307f9ef4be6b}} 
+\index{Line\+Segment@{Line\+Segment}!Line\+Segment@{Line\+Segment}}
+\index{Line\+Segment@{Line\+Segment}!Line\+Segment@{Line\+Segment}}
+\subsubsection{\texorpdfstring{Line\+Segment()}{LineSegment()}}
+{\footnotesize\ttfamily Line\+Segment\+::\+Line\+Segment (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{p1,  }\item[{\hyperlink{classPoint}{Point}}]{p2 }\end{DoxyParamCaption})}
+
+
+
+Constructor, specifying two endpoints of the segment. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & One endpoint of the line segment \\
+\hline
+{\em p2} & The other endpoint of the line segment \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLineSegment_a1b18c795d8c3c6f2724074062967671e}\label{classLineSegment_a1b18c795d8c3c6f2724074062967671e}} 
+\index{Line\+Segment@{Line\+Segment}!contains\+\_\+point@{contains\+\_\+point}}
+\index{contains\+\_\+point@{contains\+\_\+point}!Line\+Segment@{Line\+Segment}}
+\subsubsection{\texorpdfstring{contains\+\_\+point()}{contains\_point()}}
+{\footnotesize\ttfamily bool Line\+Segment\+::contains\+\_\+point (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point} \&}]{pt }\end{DoxyParamCaption}) const}
+
+This function checks if a point lies on the given line segment. It returns true even if the point is onr of the endpoints of the line segment 
+\begin{DoxyParams}{Parameters}
+{\em pt} & \hyperlink{classPoint}{Point} to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if point lies on line 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLineSegment_aa6c90340de500bb72bdde2114f838d57}\label{classLineSegment_aa6c90340de500bb72bdde2114f838d57}} 
+\index{Line\+Segment@{Line\+Segment}!end\+\_\+pt@{end\+\_\+pt}}
+\index{end\+\_\+pt@{end\+\_\+pt}!Line\+Segment@{Line\+Segment}}
+\subsubsection{\texorpdfstring{end\+\_\+pt()}{end\_pt()}}
+{\footnotesize\ttfamily \hyperlink{classPoint}{Point} Line\+Segment\+::end\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns end point of the line segment Initialisation order does not matter \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLineSegment_a51a9d2fcca6b3ff03cb51fd4d8fae4ba}\label{classLineSegment_a51a9d2fcca6b3ff03cb51fd4d8fae4ba}} 
+\index{Line\+Segment@{Line\+Segment}!horizontal\+\_\+projection@{horizontal\+\_\+projection}}
+\index{horizontal\+\_\+projection@{horizontal\+\_\+projection}!Line\+Segment@{Line\+Segment}}
+\subsubsection{\texorpdfstring{horizontal\+\_\+projection()}{horizontal\_projection()}}
+{\footnotesize\ttfamily \hyperlink{classPoint}{Point} Line\+Segment\+::horizontal\+\_\+projection (\begin{DoxyParamCaption}\item[{\hyperlink{classPoint}{Point}}]{pt }\end{DoxyParamCaption}) const}
+
+Returns a point that is a horizontal projection of the parameter point on the line segment. N\+A\+N\+\_\+\+P\+O\+I\+NT returned if no point found 
+\begin{DoxyParams}{Parameters}
+{\em pt} & \hyperlink{classPoint}{Point} whose horizontal projection we want to find \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classPoint}{Point} which is horizontal projection of the 
+
+N\+A\+N\+\_\+\+P\+O\+I\+NT if no projection 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLineSegment_a3bdc73ce4696a76b7c7dd143556c95b6}\label{classLineSegment_a3bdc73ce4696a76b7c7dd143556c95b6}} 
+\index{Line\+Segment@{Line\+Segment}!intersects\+\_\+at@{intersects\+\_\+at}}
+\index{intersects\+\_\+at@{intersects\+\_\+at}!Line\+Segment@{Line\+Segment}}
+\subsubsection{\texorpdfstring{intersects\+\_\+at()}{intersects\_at()}}
+{\footnotesize\ttfamily \hyperlink{classPoint}{Point} Line\+Segment\+::intersects\+\_\+at (\begin{DoxyParamCaption}\item[{\hyperlink{classLineSegment}{Line\+Segment}}]{ls }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ls} & The line segment to check with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classPoint}{Point} where the two line segments intersect 
+
+N\+A\+N\+\_\+\+P\+O\+I\+NT if the segments dont intersect 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLineSegment_a3364f7089cf7b650efe389475ddd0f12}\label{classLineSegment_a3364f7089cf7b650efe389475ddd0f12}} 
+\index{Line\+Segment@{Line\+Segment}!is\+\_\+nan@{is\+\_\+nan}}
+\index{is\+\_\+nan@{is\+\_\+nan}!Line\+Segment@{Line\+Segment}}
+\subsubsection{\texorpdfstring{is\+\_\+nan()}{is\_nan()}}
+{\footnotesize\ttfamily bool Line\+Segment\+::is\+\_\+nan (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+true if line segment is N\+A\+N\+\_\+\+L\+I\+NE 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLineSegment_ae73906b7230adbccf243c4b8dc6482b3}\label{classLineSegment_ae73906b7230adbccf243c4b8dc6482b3}} 
+\index{Line\+Segment@{Line\+Segment}!operator==@{operator==}}
+\index{operator==@{operator==}!Line\+Segment@{Line\+Segment}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Line\+Segment\+::operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{classLineSegment}{Line\+Segment} \&}]{l2 }\end{DoxyParamCaption})}
+
+Two lines are equal if they have the same endpoints 
+\begin{DoxyParams}{Parameters}
+{\em l2} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the two line segments are the same 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classLineSegment_abe9136323cfe46be663907cbc1e3da2d}\label{classLineSegment_abe9136323cfe46be663907cbc1e3da2d}} 
+\index{Line\+Segment@{Line\+Segment}!start\+\_\+pt@{start\+\_\+pt}}
+\index{start\+\_\+pt@{start\+\_\+pt}!Line\+Segment@{Line\+Segment}}
+\subsubsection{\texorpdfstring{start\+\_\+pt()}{start\_pt()}}
+{\footnotesize\ttfamily \hyperlink{classPoint}{Point} Line\+Segment\+::start\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns start point of the line segment Initialisation order does not matter \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/primitives.\+h\item 
+src/primitives.\+cpp\end{DoxyCompactItemize}

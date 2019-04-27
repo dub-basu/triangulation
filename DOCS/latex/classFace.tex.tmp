@@ -1,0 +1,17 @@
+\hypertarget{classFace}{}\section{Face Class Reference}
+\label{classFace}\index{Face@{Face}}
+
+
+Collaboration diagram for Face\+:
+% FIG 0
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classFace_adb58c5efad7d4cb65524732480e86316}\label{classFace_adb58c5efad7d4cb65524732480e86316}} 
+\hyperlink{classHalfEdge}{Half\+Edge} $\ast$ \hyperlink{classFace_adb58c5efad7d4cb65524732480e86316}{start\+Edge}
+\begin{DoxyCompactList}\small\item\em Starting edge of the face. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/D\+C\+E\+L.\+h\end{DoxyCompactItemize}

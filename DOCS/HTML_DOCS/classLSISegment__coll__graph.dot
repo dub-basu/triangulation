@@ -1,0 +1,20 @@
+digraph "LSISegment"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node2 [label="LSISegment",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="LineSegment",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLineSegment.html",tooltip="Class for line segments. "];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" start_point\nend_point" ,fontname="Helvetica"];
+  Node4 [label="Point",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPoint.html",tooltip="Stores point with X & Y coordinate. "];
+  Node5 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" lastReference" ,fontname="Helvetica"];
+  Node5 [label="Vertex",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classVertex.html"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" incidentEdge" ,fontname="Helvetica"];
+  Node6 [label="HalfEdge",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classHalfEdge.html"];
+  Node5 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" lastReference\norigin\nhelper" ,fontname="Helvetica"];
+  Node6 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" previous\nnext\ntwin" ,fontname="Helvetica"];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" incidentFace" ,fontname="Helvetica"];
+  Node7 [label="Face",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFace.html"];
+  Node6 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" startEdge" ,fontname="Helvetica"];
+}
