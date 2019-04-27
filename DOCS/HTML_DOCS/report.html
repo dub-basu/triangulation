@@ -64,8 +64,13 @@ $(function() {
 <div class="title">Examples</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">The algorithm theoretically runs in <b>O(<i>nlog</i>)</b> time.<br/>
-Experiments seem to conform with the same to a great extent.
+<div class="textblock">
+  <ul>
+  <li>The algorithm theoretically runs in <b>O(<i>nlogn</i>)</b> time.
+  <li>Experiments seem to conform with the same to a great extent.
+  <li>We encountered floating point errors for very small values.
+  <li>Issues were encountered while checking whether a diagonal lies inside a polygon.
+</ul>
 </div><ul>
 
 <table>
