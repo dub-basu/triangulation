@@ -1,0 +1,11 @@
+5-0.00s user 0.01s system 93% cpu 0.016 total
+10-0.01s user 0.01s system 91% cpu 0.016 total
+50-0.02s user 0.01s system 97% cpu 0.031 total
+100-0.03s user 0.01s system 97% cpu 0.039 total
+500-0.19s user 0.02s system 99% cpu 0.210 total
+1000-0.75s user 0.02s system 99% cpu 0.774 total
+2000-2.82s user 0.01s system 99% cpu 2.838 total
+3000-6.40s user 0.02s system 99% cpu 6.425 total
+4000-11.27s user 0.01s system 99% cpu 11.293 total
+5000-user 0.02s system 99% cpu 17.538 total
+10000-74.88s user 0.06s system 99% cpu 1:15.04 total
