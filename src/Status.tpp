@@ -230,9 +230,10 @@ public:
      */
     T* searchL(T key){
         Node *curr=root;
-        //cout<<"SearchL"<<key<<" "<<(root->key)<<endl;
+        // cout<<"Curr="<<curr->key<<" key="<<key<<" curr==key??"<<(curr->key==key)<<endl;
         while(curr->left != NULL)
             curr = curr->left;
+        // cout<<"Curr="<<curr->key<<" key="<<key<<" curr==key??"<<(curr->key==key)<<endl;
         if(curr->key == key)
             return NULL;
 

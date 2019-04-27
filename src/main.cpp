@@ -11,7 +11,7 @@
 #include "TriangulatorGraphix.h"
 
 #define VISUALISE true
-#define DEFAULT_FILENAME "../testcases/default_case.txt"
+#define DEFAULT_FILENAME "../testcases/input1.txt"
 
 using namespace std;
 

@@ -44,6 +44,40 @@ bool LSISegment::operator<(const LSISegment& lsi) const {
         lsi_lower = temp;
     }
 
+
+    if(fabsl(this->start_pt().y-this->end_pt().y)<=ERROR)
+    {
+        Point a=this->start_pt();
+        Point b=this->end_pt();
+        if(a.x>b.x)
+        {
+            Point temp=a;
+            a=b;
+            b=temp;
+        }
+        if(a==lsi.start_pt() or a==lsi.end_pt())
+            return false;
+        if(b==lsi.start_pt() or b==lsi.end_pt())
+            return true;
+    }
+
+    if(fabsl(lsi.start_pt().y-lsi.end_pt().y)<=ERROR)
+    {
+        Point a=lsi.start_pt();
+        Point b=lsi.end_pt();
+        if(a.x>b.x)
+        {
+            Point temp=a;
+            a=b;
+            b=temp;
+        }
+        if(a==this->start_pt() or a==this->end_pt())
+            return true;
+        if(b==this->start_pt() or b==this->end_pt())
+            return false;
+
+    }
+
     if ((lastReference == this_upper || lastReference == this_lower) &&
         (lastReference == lsi_upper  || lastReference == lsi_lower) ){
         //cout << "\n\n\n\nSHOULDNT PRINT\n\n\n\n";

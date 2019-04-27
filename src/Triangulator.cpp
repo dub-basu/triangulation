@@ -138,7 +138,10 @@ using namespace std;
         else
         {
             cout<<"Poly to Left"<<endl;
+            // cout<<*v->incidentEdge<<endl;
             HalfEdge *i = (st.searchL(*v->incidentEdge));
+            // st.inorder();cout<<endl;
+            // if(i==NULL)cout<<"Null returned from status on searching for "<<*(v->incidentEdge)<<endl;
             i=i->origin->incidentEdge;
             cout<<"Left to "<<*v<<" is edge "<<*i<<endl;
             if(i->helper->type==vertexType::MERGE)
@@ -230,7 +233,7 @@ using namespace std;
                 minP=*e->origin;
                 minE=e;
             }
-            if(maxP.y<e->origin->y or (fabsl(maxP.y-e->origin->y)<=1e-6 and maxP.x<e->origin->x))
+            if(maxP.y<e->origin->y or (fabsl(maxP.y-e->origin->y)<=1e-6 and maxP.x>e->origin->x))
             {
                 maxP=*e->origin;
                 maxE=e;
@@ -491,6 +494,7 @@ Triangulator::Triangulator(Polygon a, TriangulatorGraphix* gfx_ptr)
             }
 
             HalfEdge::lastReference = *i;
+            // cout<<"Last Reference="<<*i<<endl;
             if(i->type==vertexType::START)
             {
                 handleStart(i);
